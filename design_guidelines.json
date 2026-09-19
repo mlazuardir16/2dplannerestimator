@@ -1,0 +1,190 @@
+{
+  "project_title": "2D Floor Planner + Automatic RAB Estimator",
+  "app_type": "hybrid_fullstack",
+  "design_philosophy": "A modern Canva + Figma + Construction Estimator studio workspace. Clean, crisp, precise, light-theme primary with subtle studio chrome tones. Designed for homeowners, contractors, architects, and engineers to visually create floor plans and automatically calculate bill of quantities (RAB - Rencana Anggaran Biaya).",
+  "theme": {
+    "primary_mode": "light",
+    "theme_toggle_supported": true,
+    "style_vibe": "Studio Workspace & High-Precision Tool (Figma / Canva / Linear style)"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Plus Jakarta Sans, sans-serif",
+      "weights": ["600", "700", "800"],
+      "h1": "text-3xl font-bold tracking-tight text-slate-900 md:text-4xl",
+      "h2": "text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl",
+      "h3": "text-lg font-semibold text-slate-800 md:text-xl",
+      "h4": "text-base font-semibold text-slate-800"
+    },
+    "body": {
+      "font_family": "Inter, sans-serif",
+      "standard": "text-sm text-slate-600 leading-relaxed",
+      "small": "text-xs text-slate-500",
+      "large": "text-base text-slate-700 font-normal"
+    },
+    "mono_numeric": {
+      "font_family": "JetBrains Mono, Menlo, monospace",
+      "usage": "Used for dimensions, canvas coordinates, currency values, RAB quantities, and unit prices for high-precision clarity",
+      "class": "font-mono tracking-tight"
+    }
+  },
+  "colors": {
+    "brand": {
+      "primary": "#1E56A0",
+      "primary_hover": "#163E75",
+      "primary_light": "#EFF6FF",
+      "accent_amber": "#D97706",
+      "accent_amber_light": "#FEF3C7",
+      "accent_emerald": "#059669"
+    },
+    "workspace": {
+      "canvas_background": "#F8FAFC",
+      "topbar_bg": "#FFFFFF",
+      "sidebar_bg": "#FFFFFF",
+      "inspector_bg": "#FAFAFA",
+      "border_subtle": "#E2E8F0",
+      "border_strong": "#CBD5E1",
+      "grid_major": "#CBD5E1",
+      "grid_minor": "#F1F5F9"
+    },
+    "floorplanner": {
+      "wall_structural": "#1E293B",
+      "wall_partition": "#475569",
+      "wall_selected": "#2563EB",
+      "wall_hover": "#60A5FA",
+      "room_fill_default": "rgba(224, 231, 255, 0.35)",
+      "room_fill_hover": "rgba(191, 219, 254, 0.5)",
+      "door_arc": "#0284C7",
+      "window_glass": "#38BDF8",
+      "column_concrete": "#334155",
+      "utility_electrical": "#EA580C",
+      "utility_plumbing": "#0284C7",
+      "dimension_line": "#64748B",
+      "ghost_reference_layer": "rgba(148, 163, 184, 0.35)"
+    },
+    "rab_categories": {
+      "structure": "#1E56A0",
+      "architecture": "#0D9488",
+      "mep": "#D97706",
+      "exterior": "#6366F1",
+      "preliminaries": "#64748B"
+    }
+  },
+  "workspace_layout": {
+    "chrome": {
+      "top_bar": "h-14 bg-white border-b border-slate-200 px-4 flex items-center justify-between z-30 sticky top-0",
+      "left_tool_rail": "w-16 bg-white border-r border-slate-200 flex flex-col items-center py-3 gap-2 z-20 shrink-0",
+      "right_inspector": "w-80 bg-slate-50/80 border-l border-slate-200 flex flex-col h-full z-20 overflow-y-auto shrink-0",
+      "canvas_area": "flex-1 relative bg-slate-100/70 overflow-hidden cursor-crosshair select-none",
+      "status_bar": "h-8 bg-white border-t border-slate-200 px-4 flex items-center justify-between text-xs font-mono text-slate-500 z-30"
+    }
+  },
+  "key_components_and_features": [
+    {
+      "name": "Dashboard & Project Hub",
+      "description": "Grid of project cards with status, building dimensions, total area, live estimated cost ($), floor count, thumbnail preview, search, and 'Create New Plan' modal.",
+      "components": ["ProjectCard", "NewProjectModal", "QuickStatsHeader", "ProjectSearchFilter"]
+    },
+    {
+      "name": "Project Setup Wizard",
+      "description": "Form for configuring project name, client name, site location, land length/width, building dimensions, number of floors, target budget, default currency (USD), and material class preset.",
+      "components": ["ProjectSetupForm", "DimensionPresetSelector", "CurrencySelector"]
+    },
+    {
+      "name": "2D Floor Planner Canvas Studio",
+      "description": "Interactive HTML5 canvas/SVG editor supporting panning, zooming (10%-500%), major/minor grid snapping, wall drawing/stretching, auto room polygon detection with area (m² / sq ft), placement of doors, windows, structural columns, utility markers, live dynamic dimension indicators, undo/redo history stack, and ghost layer floor overlay.",
+      "components": ["CanvasWorkspace", "ToolPalette", "CanvasToolbar", "ZoomControls", "GhostLayerToggle", "DimensionOverlay"]
+    },
+    {
+      "name": "Multi-Floor Manager",
+      "description": "Floor navigation bar (Ground Floor, 1st Floor, 2nd Floor, Roof) with ability to duplicate floor layout, set floor height (e.g., 3.2m), and view lower floor as translucent ghost reference layer.",
+      "components": ["FloorSwitcherNav", "FloorSettingsModal", "GhostLayerController"]
+    },
+    {
+      "name": "Element Property Inspector",
+      "description": "Contextual right sidebar that updates based on selection (Wall, Door, Window, Column, Room, Utility Point). Allows editing thickness, height, material type, opening width, unit unit-cost preview, and custom naming.",
+      "components": ["InspectorPanel", "WallProperties", "RoomProperties", "OpeningProperties", "MaterialSelector"]
+    },
+    {
+      "name": "RAB Construction Estimator Engine & Table",
+      "description": "Automated quantity takeoff engine that converts 2D wall lines, room areas, doors, windows, and utility counts into construction quantities (m³, m², meters, units). Displays detailed RAB spreadsheet table grouped by category with live unit prices, AHSP labor/material breakdown, subtotals, overhead/profit adjustment, and direct jump-to-drawing trigger.",
+      "components": ["RABTable", "QuantityTakeoffEngine", "AHSPCoefficientEditor", "RABCategoryAccordion", "ExportRABButton"]
+    },
+    {
+      "name": "Cost Analytics & Executive Summary",
+      "description": "Dashboard with graphical cost breakdown charts (Cost per m², Structure vs Architecture vs MEP vs Exterior breakdown), Material vs Labor vs Contractor Fee distribution, and room-by-room cost breakdown.",
+      "components": ["CostSummaryCharts", "CostPerMeterCard", "CategoryPieChart", "LaborMaterialBarChart", "RoomCostDistribution"]
+    },
+    {
+      "name": "Price & Material Resource Database",
+      "description": "Editable master rate database for cement, sand, brick, rebar, paint, labor per day, tile per m², and fixture unit prices that dynamically recalculate the entire RAB.",
+      "components": ["PriceDatabaseEditor", "MaterialRateTable", "LaborRateTable"]
+    }
+  ],
+  "image_urls": {
+    "project_thumbnails": [
+      {
+        "url": "https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmFsJTIwZmxvb3IlMjBwbGFuJTIwYmx1ZXByaW50JTIwaG91c2UlMjBkZXNpZ258ZW58MHx8fHwxNzg5ODUzNzY0fDA&ixlib=rb-4.1.0&q=85",
+        "category": "Modern Villa Rendering",
+        "description": "2-Story Modern Minimalist Villa floor plan preview"
+      },
+      {
+        "url": "https://images.pexels.com/photos/7937331/pexels-photo-7937331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "category": "Architectural Plan Layout",
+        "description": "Clean floor plan blueprint with key indicator"
+      },
+      {
+        "url": "https://images.pexels.com/photos/7937319/pexels-photo-7937319.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "category": "Construction Blueprint Desk",
+        "description": "Sunlit technical blueprint with helmet and floor plan"
+      }
+    ]
+  },
+  "data_testid_rules": {
+    "convention": "kebab-case",
+    "required_targets": [
+      "dashboard-new-project-button",
+      "dashboard-project-card-{id}",
+      "canvas-draw-wall-tool",
+      "canvas-select-tool",
+      "canvas-door-tool",
+      "canvas-window-tool",
+      "canvas-room-tool",
+      "canvas-column-tool",
+      "canvas-utility-tool",
+      "canvas-dimension-tool",
+      "canvas-undo-button",
+      "canvas-redo-button",
+      "canvas-zoom-in",
+      "canvas-zoom-out",
+      "canvas-zoom-reset",
+      "canvas-grid-snap-toggle",
+      "floor-switcher-ground",
+      "floor-switcher-first",
+      "floor-switcher-ghost-toggle",
+      "inspector-wall-thickness-input",
+      "inspector-wall-material-select",
+      "rab-tab-button",
+      "rab-table-container",
+      "rab-export-pdf-button",
+      "rab-export-csv-button",
+      "rab-total-cost-display",
+      "cost-summary-chart-category",
+      "price-db-search-input"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Ensure state persistence using localStorage so created projects, drawings, floor plans, and custom RAB prices persist across browser reloads.",
+    "The drawing canvas MUST serve as the SINGLE SOURCE OF TRUTH for RAB quantity calculations. Modifying walls, adding rooms, or adding doors/windows MUST dynamically update quantities in the RAB table in real-time.",
+    "Do NOT force AutoCAD complex controls. Make drawing intuitive like Canva/Figma: drag to draw walls, click to select, drag handles to move/resize, auto-snap to grid and nearest wall endpoints.",
+    "Provide sample default starter project templates (e.g. 'Modern 2-Story 3BR Family Residence', 'Minimalist Compact Studio 45m²', 'Luxury Pavilion House') so users can immediately test the 2D planner and RAB calculations upon opening.",
+    "Use USD ($) as default currency label with option to toggle currency display or custom rate multiplier.",
+    "Ensure all interactive buttons, inputs, tabs, and canvas toolbar items include the required data-testid attributes."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": {
+    "spacing": "Generous spacing philosophy in dashboard and inspector panels (p-4 to p-6). Tight studio alignment in canvas chrome.",
+    "animations": "Framer motion micro-interactions for tab switching, sidebar expand/collapse, project card hovers, and toast notifications (Sonner).",
+    "contrast": "High contrast text and sharp crisp borders (border-slate-200 / border-slate-300) to ensure readability for technical measurements.",
+    "toasts": "Use Sonner for user actions (e.g. Project Saved, Floor Duplicated, RAB Exported)."
+  }
+}
