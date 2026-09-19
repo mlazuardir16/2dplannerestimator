@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -71,6 +71,7 @@ export default function NewProjectModal({ open, onOpenChange, onCreated }) {
       <DialogContent className="max-w-lg" data-testid="new-project-modal">
         <DialogHeader>
           <DialogTitle className="font-display text-xl">Create New Plan</DialogTitle>
+          <DialogDescription>Set up your project details, or start instantly from a sample house.</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-2">
           <div className="grid gap-1.5">
