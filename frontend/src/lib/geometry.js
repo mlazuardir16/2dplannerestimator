@@ -177,6 +177,58 @@ export function detectRooms(walls, minArea = 0.5) {
   return rooms;
 }
 
+// Counts wall-graph nodes that need a confined-masonry tie-column: every
+// corner (direction change), T/X-junction, and dead-end. Reuses the same
+// node-dedup + adjacency pattern as detectRooms() above, rather than a
+// different one, since it's the same "wall centerline graph" concept.
+// Straight-through points (two collinear segments meeting at a mid-span
+// split) are deliberately NOT counted — only genuine direction changes are.
+export function countStructuralNodes(walls, angleToleranceDeg = 15) {
+  const tol = 0.02;
+  const nodes = [];
+  const nodeMap = new Map();
+  const keyOf = (p) => `${Math.round(p.x / tol)},${Math.round(p.y / tol)}`;
+  function getNode(p) {
+    const k = keyOf(p);
+    if (nodeMap.has(k)) return nodeMap.get(k);
+    const id = nodes.length;
+    nodes.push({ x: p.x, y: p.y });
+    nodeMap.set(k, id);
+    return id;
+  }
+
+  const adj = new Map();
+  function addEdge(a, b) {
+    if (a === b) return;
+    if (!adj.has(a)) adj.set(a, new Set());
+    if (!adj.has(b)) adj.set(b, new Set());
+    adj.get(a).add(b);
+    adj.get(b).add(a);
+  }
+  for (const w of walls) {
+    if (w.wallType === "fence") continue;
+    addEdge(getNode(w.start), getNode(w.end));
+  }
+
+  const tolRad = (angleToleranceDeg * Math.PI) / 180;
+  let count = 0;
+  adj.forEach((neighbors, n) => {
+    const deg = neighbors.size;
+    if (deg !== 2) {
+      count += 1; // T/X-junction (>=3) or dead-end (1)
+      return;
+    }
+    const [a, b] = [...neighbors];
+    const angA = Math.atan2(nodes[a].y - nodes[n].y, nodes[a].x - nodes[n].x);
+    const angB = Math.atan2(nodes[b].y - nodes[n].y, nodes[b].x - nodes[n].x);
+    let diff = Math.abs(angA - angB);
+    if (diff > Math.PI) diff = 2 * Math.PI - diff;
+    const isCollinear = Math.abs(diff - Math.PI) < tolRad;
+    if (!isCollinear) count += 1; // genuine corner
+  });
+  return count;
+}
+
 // stable-ish key for a room based on rounded centroid (used to persist room names)
 export function roomKey(centroid) {
   return `${Math.round(centroid.x * 2) / 2},${Math.round(centroid.y * 2) / 2}`;

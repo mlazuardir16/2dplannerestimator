@@ -1,7 +1,7 @@
 import { useProjectStore } from "@/store/useProjectStore";
 import { ZoomIn, ZoomOut, Maximize, Grid3x3, Magnet } from "lucide-react";
 
-export default function StatusBar({ rab }) {
+export default function StatusBar({ estimate }) {
   const view = useProjectStore((s) => s.view);
   const setView = useProjectStore((s) => s.setView);
   const grid = useProjectStore((s) => s.grid);
@@ -26,6 +26,9 @@ export default function StatusBar({ rab }) {
         <span>Doors: {floor?.doors?.length || 0}</span>
         <span>Windows: {floor?.windows?.length || 0}</span>
         <span>Columns: {floor?.columns?.length || 0}</span>
+        <span>Custom: {floor?.customItems?.length || 0}</span>
+        <span>Stairs: {floor?.stairs?.length || 0}</span>
+        <span>Railings: {floor?.railings?.length || 0}</span>
         <span>Grid: {grid.major}m / {grid.minor}m</span>
       </div>
       <div className="flex items-center gap-3">

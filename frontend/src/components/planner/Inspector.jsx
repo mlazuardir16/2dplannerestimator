@@ -29,6 +29,9 @@ export default function Inspector() {
   const updateWall = useProjectStore((s) => s.updateWall);
   const updateColumn = useProjectStore((s) => s.updateColumn);
   const updateOpening = useProjectStore((s) => s.updateOpening);
+  const updateCustomItem = useProjectStore((s) => s.updateCustomItem);
+  const updateStair = useProjectStore((s) => s.updateStair);
+  const updateRailing = useProjectStore((s) => s.updateRailing);
   const setRoomName = useProjectStore((s) => s.setRoomName);
   const deleteElement = useProjectStore((s) => s.deleteElement);
 
@@ -39,6 +42,11 @@ export default function Inspector() {
   const util = selected?.type === "utility" ? floor.utilities.find((u) => u.id === selected.id) : null;
   const door = selected?.type === "door" ? floor.doors.find((d) => d.id === selected.id) : null;
   const win = selected?.type === "window" ? floor.windows.find((w) => w.id === selected.id) : null;
+  const customItem = (selected?.type === "customPoint" || selected?.type === "customLine")
+    ? (floor.customItems || []).find((x) => x.id === selected.id)
+    : null;
+  const stair = selected?.type === "stair" ? (floor.stairs || []).find((x) => x.id === selected.id) : null;
+  const railing = selected?.type === "railing" ? (floor.railings || []).find((x) => x.id === selected.id) : null;
 
   return (
     <div className="flex w-80 shrink-0 flex-col overflow-y-auto border-l border-slate-200 bg-[#FAFBFC]" data-testid="inspector-panel">
@@ -148,6 +156,70 @@ export default function Inspector() {
               </Select>
             </Row>
             <DeleteBtn onClick={() => deleteElement("utility", util.id)} />
+          </>
+        )}
+
+        {customItem && (
+          <>
+            <Row label="Name">
+              <Input
+                data-testid="inspector-customitem-name-input"
+                defaultValue={customItem.name}
+                onBlur={(e) => updateCustomItem(customItem.id, { name: e.target.value || "Custom Item" })}
+              />
+            </Row>
+            <Row label="Unit">
+              <Input
+                data-testid="inspector-customitem-unit-input"
+                placeholder="e.g. m, kg, trip, lot"
+                defaultValue={customItem.unit}
+                onBlur={(e) => updateCustomItem(customItem.id, { unit: e.target.value || "unit" })}
+              />
+            </Row>
+            <Row label="Quantity">
+              <Input
+                data-testid="inspector-customitem-qty-input"
+                type="number" step="0.01" value={customItem.quantity}
+                onChange={(e) => updateCustomItem(customItem.id, { quantity: Number(e.target.value) || 0 })}
+              />
+            </Row>
+            <Row label={`Unit Price (${project.currency})`}>
+              <Input
+                data-testid="inspector-customitem-price-input"
+                type="number" step="0.01" value={customItem.unitPrice}
+                onChange={(e) => updateCustomItem(customItem.id, { unitPrice: Number(e.target.value) || 0 })}
+              />
+            </Row>
+            <DeleteBtn onClick={() => deleteElement(selected.type, customItem.id)} />
+          </>
+        )}
+
+        {stair && (
+          <>
+            <Row label="Width (m)">
+              <Input type="number" step="0.05" value={stair.width} onChange={(e) => updateStair(stair.id, { width: Number(e.target.value) || 0 })} />
+            </Row>
+            <Row label="Run Depth (m)">
+              <Input type="number" step="0.05" value={stair.depth} onChange={(e) => updateStair(stair.id, { depth: Number(e.target.value) || 0 })} />
+            </Row>
+            <Row label="Steps">
+              <Input type="number" step="1" value={stair.steps} onChange={(e) => updateStair(stair.id, { steps: Math.max(2, Number(e.target.value) || 2) })} />
+            </Row>
+            <DeleteBtn onClick={() => deleteElement("stair", stair.id)} />
+          </>
+        )}
+
+        {railing && (
+          <>
+            <Row label="Length">
+              <div className="rounded-md border border-slate-200 bg-white px-3 py-2 font-mono text-sm text-slate-700">
+                {fmtNum(dist(railing.start, railing.end))} m
+              </div>
+            </Row>
+            <Row label="Height (m)">
+              <Input type="number" step="0.05" value={railing.height} onChange={(e) => updateRailing(railing.id, { height: Number(e.target.value) || 0 })} />
+            </Row>
+            <DeleteBtn onClick={() => deleteElement("railing", railing.id)} />
           </>
         )}
 

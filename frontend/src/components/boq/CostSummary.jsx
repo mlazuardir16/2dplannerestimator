@@ -4,20 +4,20 @@ import { formatMoney, fmtNum } from "@/lib/format";
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip as RTooltip, CartesianGrid } from "recharts";
 import { Ruler, Home, Hammer, Package, DollarSign } from "lucide-react";
 
-export default function CostSummary({ rab }) {
+export default function CostSummary({ estimate }) {
   const project = useProjectStore((s) => s.project);
   const currency = project?.currency || "USD";
 
-  const catData = Object.entries(rab.byCategory).map(([k, v]) => ({
+  const catData = Object.entries(estimate.byCategory).map(([k, v]) => ({
     name: CATEGORY_META[k]?.label || k,
     value: v.total,
     color: CATEGORY_META[k]?.color || "#64748B",
   }));
 
   const splitData = [
-    { name: "Materials", value: rab.materialTotal, color: "#1E56A0" },
-    { name: "Labor", value: rab.laborTotal, color: "#0D9488" },
-    { name: "Equipment", value: rab.equipmentTotal, color: "#D97706" },
+    { name: "Materials", value: estimate.materialTotal, color: "#1E56A0" },
+    { name: "Labor", value: estimate.laborTotal, color: "#0D9488" },
+    { name: "Equipment", value: estimate.equipmentTotal, color: "#D97706" },
   ];
 
   return (
@@ -27,10 +27,10 @@ export default function CostSummary({ rab }) {
         <p className="mb-6 text-sm text-slate-500">Executive overview of your estimated construction budget.</p>
 
         <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <Metric icon={<DollarSign className="h-5 w-5" />} label="Grand Total" value={formatMoney(rab.grandTotal, currency)} accent />
-          <Metric icon={<Ruler className="h-5 w-5" />} label="Cost per m²" value={formatMoney(rab.costPerM2, currency)} />
-          <Metric icon={<Home className="h-5 w-5" />} label="Building Area" value={`${fmtNum(rab.buildingArea, 1)} m²`} />
-          <Metric icon={<Package className="h-5 w-5" />} label="Floor Area (all)" value={`${fmtNum(rab.floorAreaTotal, 1)} m²`} />
+          <Metric icon={<DollarSign className="h-5 w-5" />} label="Grand Total" value={formatMoney(estimate.grandTotal, currency)} accent />
+          <Metric icon={<Ruler className="h-5 w-5" />} label="Cost per m²" value={formatMoney(estimate.costPerM2, currency)} />
+          <Metric icon={<Home className="h-5 w-5" />} label="Building Area" value={`${fmtNum(estimate.buildingArea, 1)} m²`} />
+          <Metric icon={<Package className="h-5 w-5" />} label="Floor Area (all)" value={`${fmtNum(estimate.floorAreaTotal, 1)} m²`} />
         </div>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
@@ -58,7 +58,7 @@ export default function CostSummary({ rab }) {
           </Card>
 
           <Card title="Material vs Labor vs Equipment">
-            {rab.rows.length === 0 ? <Empty /> : (
+            {estimate.rows.length === 0 ? <Empty /> : (
               <ResponsiveContainer width="100%" height={220}>
                 <BarChart data={splitData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" vertical={false} />
@@ -77,7 +77,7 @@ export default function CostSummary({ rab }) {
         <Card title="Category Breakdown" className="mt-5">
           <div className="space-y-3">
             {catData.map((d) => {
-              const pct = rab.subtotal > 0 ? (d.value / rab.subtotal) * 100 : 0;
+              const pct = estimate.subtotal > 0 ? (d.value / estimate.subtotal) * 100 : 0;
               return (
                 <div key={d.name}>
                   <div className="mb-1 flex items-center justify-between text-sm">

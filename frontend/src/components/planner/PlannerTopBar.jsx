@@ -5,9 +5,9 @@ import { ChevronLeft, Save, Loader2, Check, PencilRuler, Table2, PieChart, Tags 
 
 const TABS = [
   { id: "plan", label: "Floor Plan", icon: PencilRuler, testid: "tab-plan-button" },
-  { id: "rab", label: "RAB", icon: Table2, testid: "rab-tab-button" },
+  { id: "boq", label: "BOQ", icon: Table2, testid: "boq-tab-button" },
   { id: "cost", label: "Cost Summary", icon: PieChart, testid: "tab-cost-button" },
-  { id: "prices", label: "Prices", icon: Tags, testid: "tab-prices-button" },
+  { id: "materials", label: "Materials", icon: Tags, testid: "tab-materials-button" },
 ];
 
 export default function PlannerTopBar({ project, activeTab, setActiveTab, onSave, saving, dirty, grandTotal }) {

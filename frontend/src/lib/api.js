@@ -16,3 +16,6 @@ export const updateProject = (id, project) =>
 
 export const deleteProject = (id) =>
   axios.delete(`${API}/projects/${id}`).then((r) => r.data);
+
+export const searchMaterials = (payload) =>
+  axios.post(`${API}/materials/search`, payload).then((r) => r.data);

@@ -9,6 +9,10 @@ from typing import Any, Dict
 import uuid
 from datetime import datetime, timezone
 
+from materials import cache as materials_cache
+from materials.provider import MockMaterialResearchProvider
+from materials.schemas import MaterialSearchRequest, MaterialSearchResponse
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -17,8 +21,13 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-app = FastAPI(title="Floor Planner + RAB Estimator API")
+app = FastAPI(title="Floor Planner + Cost Estimator API")
 api_router = APIRouter(prefix="/api")
+
+# Single instantiation point for the material research provider — swap this
+# for a real (e.g. web-search-backed) implementation later without touching
+# the endpoint, the cache, or any frontend code.
+material_provider = MockMaterialResearchProvider()
 
 LIST_FIELDS = {
     "_id": 0,
@@ -47,7 +56,7 @@ def _now() -> str:
 
 @api_router.get("/")
 async def root():
-    return {"message": "Floor Planner + RAB Estimator API"}
+    return {"message": "Floor Planner + Cost Estimator API"}
 
 
 @api_router.get("/projects")
@@ -91,6 +100,30 @@ async def update_project(pid: str, payload: Dict[str, Any] = Body(...)):
 async def delete_project(pid: str):
     await db.projects.delete_one({"id": pid})
     return {"ok": True}
+
+
+@api_router.post("/materials/search", response_model=MaterialSearchResponse)
+async def search_materials(payload: MaterialSearchRequest):
+    cached = await materials_cache.get_cached(db, payload.country, payload.category, material_provider.name)
+    if cached:
+        return {
+            "materials": cached["materials"],
+            "cached": True,
+            "cachedAt": cached["fetchedAt"],
+            "country": payload.country,
+            "category": payload.category,
+        }
+
+    recommendations = await material_provider.get_recommendations(payload.country, payload.category)
+    materials_dicts = [m.model_dump() for m in recommendations]
+    doc = await materials_cache.set_cached(db, payload.country, payload.category, materials_dicts, material_provider.name)
+    return {
+        "materials": materials_dicts,
+        "cached": False,
+        "cachedAt": doc["fetchedAt"],
+        "country": payload.country,
+        "category": payload.category,
+    }
 
 
 app.include_router(api_router)

@@ -2,16 +2,16 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useProjectStore } from "@/store/useProjectStore";
 import { getProject, updateProject } from "@/lib/api";
-import { computeRAB } from "@/lib/rabEngine";
+import { computeEstimate } from "@/lib/estimateEngine";
 import PlannerTopBar from "@/components/planner/PlannerTopBar";
 import ToolPalette from "@/components/planner/ToolPalette";
 import CanvasWorkspace from "@/components/planner/CanvasWorkspace";
 import Inspector from "@/components/planner/Inspector";
 import FloorSwitcher from "@/components/planner/FloorSwitcher";
 import StatusBar from "@/components/planner/StatusBar";
-import RABView from "@/components/rab/RABView";
-import CostSummary from "@/components/rab/CostSummary";
-import PriceDatabase from "@/components/rab/PriceDatabase";
+import BOQView from "@/components/boq/BOQView";
+import CostSummary from "@/components/boq/CostSummary";
+import MaterialsView from "@/components/boq/MaterialsView";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -46,7 +46,7 @@ export default function Workspace() {
     };
   }, [id, setProject]);
 
-  const rab = useMemo(() => (project ? computeRAB(project) : null), [project]);
+  const estimate = useMemo(() => (project ? computeEstimate(project) : null), [project]);
 
   const doSave = useCallback(async () => {
     const state = useProjectStore.getState();
@@ -54,7 +54,7 @@ export default function Workspace() {
     if (!p) return;
     setSaving(true);
     try {
-      const r = computeRAB(p);
+      const r = computeEstimate(p);
       const payload = { ...p, estimatedCost: r.grandTotal, buildingArea: r.buildingArea };
       await updateProject(p.id, payload);
       markSaved();
@@ -91,12 +91,17 @@ export default function Workspace() {
         return;
       }
       if (tab !== "plan") return;
-      const map = { v: "select", w: "wall", d: "door", n: "window", c: "column", u: "utility", h: "pan" };
+      const map = {
+        v: "select", w: "wall", d: "door", n: "window", c: "column", u: "utility", h: "pan",
+        k: "customPoint", l: "customLine", r: "railing",
+        // stairs only make sense once there's more than one floor to connect
+        ...((project?.floorCount || 1) > 1 ? { s: "stair" } : {}),
+      };
       if (map[e.key.toLowerCase()]) setTool(map[e.key.toLowerCase()]);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [undo, redo, setTool, doSave, tab]);
+  }, [undo, redo, setTool, doSave, tab, project]);
 
   const onDrill = (row) => {
     const ids = (row.sources || []).map((s) => s.id);
@@ -125,7 +130,7 @@ export default function Workspace() {
         onSave={doSave}
         saving={saving}
         dirty={dirty}
-        grandTotal={rab?.grandTotal || 0}
+        grandTotal={estimate?.grandTotal || 0}
       />
 
       {tab === "plan" && (
@@ -138,13 +143,13 @@ export default function Workspace() {
             </div>
             <Inspector />
           </div>
-          <StatusBar rab={rab} />
+          <StatusBar estimate={estimate} />
         </div>
       )}
 
-      {tab === "rab" && <RABView rab={rab} onDrill={onDrill} />}
-      {tab === "cost" && <CostSummary rab={rab} />}
-      {tab === "prices" && <PriceDatabase />}
+      {tab === "boq" && <BOQView estimate={estimate} onDrill={onDrill} />}
+      {tab === "cost" && <CostSummary estimate={estimate} />}
+      {tab === "materials" && <MaterialsView />}
     </div>
   );
 }

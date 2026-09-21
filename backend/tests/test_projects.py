@@ -1,4 +1,4 @@
-"""Backend API tests for Floor Planner + RAB project CRUD endpoints."""
+"""Backend API tests for Floor Planner + Cost Estimator project CRUD endpoints."""
 import os
 import uuid
 import pytest

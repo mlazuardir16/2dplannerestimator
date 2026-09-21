@@ -10,6 +10,10 @@ import {
   Hand,
   Undo2,
   Redo2,
+  MapPin,
+  Ruler,
+  MoveVertical,
+  Fence,
 } from "lucide-react";
 
 const TOOLS = [
@@ -19,8 +23,13 @@ const TOOLS = [
   { id: "window", icon: Square, label: "Add Window — click a wall (N)", testid: "canvas-window-tool" },
   { id: "column", icon: Columns3, label: "Add Column (C)", testid: "canvas-column-tool" },
   { id: "utility", icon: Zap, label: "Add Utility Point (U)", testid: "canvas-utility-tool" },
+  { id: "railing", icon: Fence, label: "Draw Railing (R)", testid: "canvas-railing-tool" },
+  { id: "customPoint", icon: MapPin, label: "Add Custom Item — point (K)", testid: "canvas-custompoint-tool" },
+  { id: "customLine", icon: Ruler, label: "Add Custom Item — line (L)", testid: "canvas-customline-tool" },
   { id: "pan", icon: Hand, label: "Pan (Space)", testid: "canvas-pan-tool" },
 ];
+
+const STAIR_TOOL = { id: "stair", icon: MoveVertical, label: "Add Stair (S)", testid: "canvas-stair-tool" };
 
 export default function ToolPalette() {
   const tool = useProjectStore((s) => s.tool);
@@ -28,11 +37,18 @@ export default function ToolPalette() {
   const undo = useProjectStore((s) => s.undo);
   const redo = useProjectStore((s) => s.redo);
   const history = useProjectStore((s) => s.history);
+  const project = useProjectStore((s) => s.project);
+
+  // Stairs only make sense once there's more than one floor to connect.
+  const isMultiLevel = (project?.floorCount || 1) > 1;
+  const tools = isMultiLevel
+    ? [...TOOLS.slice(0, 6), STAIR_TOOL, ...TOOLS.slice(6)]
+    : TOOLS;
 
   return (
     <TooltipProvider delayDuration={200}>
       <div className="flex w-16 shrink-0 flex-col items-center gap-1.5 border-r border-slate-200 bg-white py-3">
-        {TOOLS.map((t) => {
+        {tools.map((t) => {
           const Icon = t.icon;
           const active = tool === t.id;
           return (

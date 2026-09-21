@@ -1,7 +1,26 @@
 import { create } from "zustand";
 import { uidGen } from "../lib/project";
+import { currencyForCountry } from "../lib/countries";
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
+
+// Approximate initial camera fit for the project's buildable-space boundary
+// (see CanvasWorkspace.jsx's hard space limit) plus a comfortable margin, so
+// opening a project doesn't inherit whatever pan/zoom a previous project left
+// behind. Refined further by the user's own pan/zoom afterward.
+function fitView(building) {
+  const boundW = building?.length > 0 ? building.length : 20;
+  const boundH = building?.width > 0 ? building.width : 15;
+  const margin = 1.5;
+  const viewportW = 900;
+  const viewportH = 600;
+  const scale = Math.max(8, Math.min(400, Math.min(viewportW / (boundW + margin * 2), viewportH / (boundH + margin * 2))));
+  return {
+    scale,
+    panX: (viewportW - boundW * scale) / 2,
+    panY: (viewportH - boundH * scale) / 2,
+  };
+}
 
 export const useProjectStore = create((set, get) => ({
   project: null,
@@ -14,7 +33,7 @@ export const useProjectStore = create((set, get) => ({
   grid: { major: 1, minor: 0.1, snap: true, show: true },
   ghost: true,
   dirty: false,
-  highlightIds: [], // element ids highlighted from RAB drill-down
+  highlightIds: [], // element ids highlighted from BOQ drill-down
   history: { past: [], future: [] },
 
   setProject: (project) =>
@@ -24,6 +43,7 @@ export const useProjectStore = create((set, get) => ({
       selected: null,
       dirty: false,
       history: { past: [], future: [] },
+      view: fitView(project?.building),
     }),
 
   markSaved: () => set({ dirty: false }),
@@ -213,6 +233,91 @@ export const useProjectStore = create((set, get) => ({
     });
   },
 
+  // ---- Custom items (manual point/line, for anything non-standard) ----
+  addCustomPoint: (x, y) => {
+    const id = uidGen();
+    get().commit((floors, fi) => {
+      if (!floors[fi].customItems) floors[fi].customItems = [];
+      floors[fi].customItems.push({ id, kind: "point", x, y, name: "Custom Item", unit: "unit", quantity: 1, unitPrice: 0 });
+    });
+    return id;
+  },
+
+  addCustomLine: (start, end) => {
+    const id = uidGen();
+    const length = Math.hypot(end.x - start.x, end.y - start.y);
+    get().commit((floors, fi) => {
+      if (!floors[fi].customItems) floors[fi].customItems = [];
+      floors[fi].customItems.push({
+        id, kind: "line", start, end, name: "Custom Item", unit: "m",
+        quantity: Number(length.toFixed(2)), unitPrice: 0,
+      });
+    });
+    return id;
+  },
+
+  updateCustomItemRaw: (id, patch) => {
+    get().applyRaw((floors, fi) => {
+      const it = (floors[fi].customItems || []).find((x) => x.id === id);
+      if (it) Object.assign(it, patch);
+    });
+  },
+
+  updateCustomItem: (id, patch) => {
+    get().commit((floors, fi) => {
+      const it = (floors[fi].customItems || []).find((x) => x.id === id);
+      if (it) Object.assign(it, patch);
+    });
+  },
+
+  // ---- Stairs (first-class standard item, multi-level projects only) ----
+  addStair: (x, y) => {
+    const id = uidGen();
+    get().commit((floors, fi) => {
+      if (!floors[fi].stairs) floors[fi].stairs = [];
+      floors[fi].stairs.push({ id, x, y, width: 1, depth: 3, steps: 12 });
+    });
+    return id;
+  },
+
+  updateStairRaw: (id, patch) => {
+    get().applyRaw((floors, fi) => {
+      const st = (floors[fi].stairs || []).find((x) => x.id === id);
+      if (st) Object.assign(st, patch);
+    });
+  },
+
+  updateStair: (id, patch) => {
+    get().commit((floors, fi) => {
+      const st = (floors[fi].stairs || []).find((x) => x.id === id);
+      if (st) Object.assign(st, patch);
+    });
+  },
+
+  // ---- Railings (first-class standard item, chained like walls) ----
+  addRailing: (start, end) => {
+    const id = uidGen();
+    get().commit((floors, fi) => {
+      if (!floors[fi].railings) floors[fi].railings = [];
+      floors[fi].railings.push({ id, start, end, height: 0.9 });
+    });
+    return id;
+  },
+
+  updateRailingRaw: (id, patch) => {
+    get().applyRaw((floors, fi) => {
+      const rl = (floors[fi].railings || []).find((x) => x.id === id);
+      if (rl) Object.assign(rl, patch);
+    });
+  },
+
+  updateRailing: (id, patch) => {
+    get().commit((floors, fi) => {
+      const rl = (floors[fi].railings || []).find((x) => x.id === id);
+      if (rl) Object.assign(rl, patch);
+    });
+  },
+
   deleteElement: (type, id) => {
     get().commit((floors, fi) => {
       const f = floors[fi];
@@ -224,6 +329,9 @@ export const useProjectStore = create((set, get) => ({
       else if (type === "window") f.windows = f.windows.filter((w) => w.id !== id);
       else if (type === "column") f.columns = f.columns.filter((c) => c.id !== id);
       else if (type === "utility") f.utilities = f.utilities.filter((u) => u.id !== id);
+      else if (type === "customPoint" || type === "customLine") f.customItems = (f.customItems || []).filter((x) => x.id !== id);
+      else if (type === "stair") f.stairs = (f.stairs || []).filter((x) => x.id !== id);
+      else if (type === "railing") f.railings = (f.railings || []).filter((x) => x.id !== id);
     });
     set({ selected: null });
   },
@@ -240,34 +348,55 @@ export const useProjectStore = create((set, get) => ({
 
   // project-level (no floor history) updates
   patchProject: (patch) => set((s) => ({ project: { ...s.project, ...patch }, dirty: true })),
-  updateResource: (id, price) =>
+
+  // Currency always follows country (no manual currency conversion exists
+  // yet — see lib/project.js for why they must stay in sync). Existing
+  // material selections are cleared on country change: they're specific
+  // products priced in the old country's currency/market and don't carry
+  // over to a different one.
+  setCountry: (country) =>
+    set((s) => ({
+      project: { ...s.project, country, currency: currencyForCountry(country), materialSelections: {} },
+      dirty: true,
+    })),
+
+  selectMaterial: (category, material) =>
     set((s) => ({
       project: {
         ...s.project,
-        resourcesDb: s.project.resourcesDb.map((r) => (r.id === id ? { ...r, price: Number(price) || 0 } : r)),
+        materialSelections: { ...s.project.materialSelections, [category]: material },
       },
       dirty: true,
     })),
-  updateItemField: (id, field, value) =>
-    set((s) => ({
-      project: {
-        ...s.project,
-        itemsDb: s.project.itemsDb.map((it) => (it.id === id ? { ...it, [field]: value } : it)),
-      },
-      dirty: true,
-    })),
-  updateItemResourceCoef: (itemId, ref, coef) =>
-    set((s) => ({
-      project: {
-        ...s.project,
-        itemsDb: s.project.itemsDb.map((it) =>
-          it.id === itemId
-            ? { ...it, resources: it.resources.map((r) => (r.ref === ref ? { ...r, coef: Number(coef) || 0 } : r)) }
-            : it
-        ),
-      },
-      dirty: true,
-    })),
+
+  clearMaterialSelection: (category) =>
+    set((s) => {
+      const materialSelections = { ...s.project.materialSelections };
+      delete materialSelections[category];
+      return { project: { ...s.project, materialSelections }, dirty: true };
+    }),
+
+  setRoofConfig: (patch) =>
+    set((s) => ({ project: { ...s.project, roof: { ...s.project.roof, ...patch } }, dirty: true })),
+
+  setStructuralSystem: (structuralSystem) =>
+    set((s) => ({ project: { ...s.project, structuralSystem }, dirty: true })),
+
+  setWasteFactor: (category, value) =>
+    set((s) => {
+      const sel = s.project.materialSelections?.[category];
+      if (!sel) return {};
+      return {
+        project: {
+          ...s.project,
+          materialSelections: {
+            ...s.project.materialSelections,
+            [category]: { ...sel, wasteFactorOverride: Number(value) },
+          },
+        },
+        dirty: true,
+      };
+    }),
 
   addFloor: () =>
     set((s) => {
@@ -284,6 +413,9 @@ export const useProjectStore = create((set, get) => ({
           windows: [],
           columns: [],
           utilities: [],
+          customItems: [],
+          stairs: [],
+          railings: [],
           roomNames: {},
         },
       ];
@@ -296,8 +428,24 @@ export const useProjectStore = create((set, get) => ({
       src.id = uidGen();
       src.level = s.project.floors.length;
       src.name = `Floor ${src.level + 1}`;
-      // regenerate element ids so they don't collide
-      src.walls = src.walls.map((w) => ({ ...w, id: uidGen() }));
+      // Regenerate every element id so the duplicated floor doesn't collide
+      // with the source floor, remapping wall-id references on doors/windows
+      // too (previously only wall ids were regenerated, silently orphaning
+      // every door/window on the duplicated floor since they kept pointing
+      // at wall ids that no longer existed there).
+      const wallIdMap = new Map();
+      src.walls = src.walls.map((w) => {
+        const newId = uidGen();
+        wallIdMap.set(w.id, newId);
+        return { ...w, id: newId };
+      });
+      src.doors = (src.doors || []).map((d) => ({ ...d, id: uidGen(), wallId: wallIdMap.get(d.wallId) || d.wallId }));
+      src.windows = (src.windows || []).map((w) => ({ ...w, id: uidGen(), wallId: wallIdMap.get(w.wallId) || w.wallId }));
+      src.columns = (src.columns || []).map((c) => ({ ...c, id: uidGen() }));
+      src.utilities = (src.utilities || []).map((u) => ({ ...u, id: uidGen() }));
+      src.customItems = (src.customItems || []).map((it) => ({ ...it, id: uidGen() }));
+      src.stairs = (src.stairs || []).map((st) => ({ ...st, id: uidGen() }));
+      src.railings = (src.railings || []).map((rl) => ({ ...rl, id: uidGen() }));
       const floors = [...s.project.floors, src];
       return { project: { ...s.project, floors, floorCount: floors.length }, activeFloor: floors.length - 1, dirty: true };
     }),

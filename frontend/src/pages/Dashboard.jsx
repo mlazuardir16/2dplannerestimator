@@ -101,7 +101,7 @@ export default function Dashboard() {
             </div>
             <div>
               <div className="font-display text-lg font-bold leading-none tracking-tight text-slate-900">PlanCost</div>
-              <div className="text-[11px] text-slate-500">Floor Planner &amp; RAB Estimator</div>
+              <div className="text-[11px] text-slate-500">Floor Planner &amp; Cost Estimator</div>
             </div>
           </div>
           <Button data-testid="dashboard-new-project-button" onClick={() => setModalOpen(true)} className="bg-[#1E56A0] hover:bg-[#163E75]">
