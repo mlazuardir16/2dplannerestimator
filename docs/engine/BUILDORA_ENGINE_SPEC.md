@@ -1,4 +1,4 @@
-# Buildora — RAB Engine Specification v1
+# Buildora — RAB Engine Specification v1.1
 
 Source of truth: the two reference workbooks in this folder (`Buildora_RAB_Tipe36.xlsx`, `Buildora_RAB_2Lantai_LB108.xlsx`) and `buildora_engine_seed.json`. The engine must reproduce the workbook totals exactly (golden tests, §6).
 
@@ -19,13 +19,20 @@ Output: RAB Swakelola, RAB Borongan, material list (purchase packs + cost), labo
 Notes:
 - Labor OH coefficients in the seed are already market-calibrated (factors in `labor_calibration_factors_applied_in_coefficients`). Do not apply them again.
 - Material coefficients exclude waste; waste is applied from the material record.
+- Derived volume formulas use the workbook's cell references (`Volume!$B$n`). Inputs fill rows 6 onward in seed order, and the derived block starts after one blank row below the last input. For example, in Tipe 36, `Volume!$B$23` is `A`.
 - Installed packages (baja ringan, aluminium doors/windows, septictank, kanopi, pagar, gate, lisplang, waterproofing, railing) have labor = 0: the package price includes installation.
 
 ## 3. Calculation
+Effective coefficients — as stored in the workbook's AHSP sheet. **Every cost and quantity below uses these, never the raw seed values**:
+- `coef_eff(m) = round(coef(m) × (1 + waste(m)), 5)` — material coefficient including waste, 5 decimals
+- `OH_eff(t) = round(OH(t), 4)` — labour coefficient, 4 decimals
+- Rounding is Python `round()` on the binary float, not Excel `ROUND`. For example, `0.22945` rounds to `0.2294`, whereas Excel would give `0.2295`. All 612 coefficients in the two workbooks follow this rule.
+- Money is never rounded. Unit prices, line totals, material costs and wages keep full precision.
+
 Per item (unit prices):
 - `price_base(m) = price_per_pack(m) / pack_size(m)`
-- `bahan_unit = Σ coef(m) × (1 + waste(m)) × price_base(m)`, or `installed_package_price` for packages
-- `upah_unit = Σ OH(t) × rate(t)`
+- `bahan_unit = Σ coef_eff(m) × price_base(m)`, or `installed_package_price` for packages
+- `upah_unit = Σ OH_eff(t) × rate(t)`
 - `margin_unit = (bahan_unit + upah_unit) × margin` (borongan only)
 - Line totals = volume × unit price. Stage totals = Σ lines.
 
@@ -40,23 +47,31 @@ Borongan total:
 3. `+ PPN 11% × (subtotal + contingency)` only if contractor is PKP
 
 Materials:
-- `qty(m) = Σ_items volume × coef(m) × (1 + waste(m))`
-- `packs(m) = ceil(qty / pack_size)` — shopping guide only
+- `qty(m) = Σ_items volume × coef_eff(m)` (installed packages contribute no materials)
+- `packs(m) = max(0, ceil(qty / pack_size − 0.0001))` — shopping guide only; the 0.0001 tolerance avoids buying an extra pack for a rounding crumb
 - `material_cost(m) = qty × price_base` — used in totals (no pack rounding)
 
 Labor:
-- `OH(stage, trade) = Σ volume × OH`; `upah = OH × rate`. No day rounding anywhere in cost.
+- `OH(stage, trade) = Σ volume × OH_eff`; `upah = OH × rate`. No day rounding anywhere in cost.
 
 Schedule:
-- `days(stage) = ceil(Σ OH(stage) / crew)`, `weeks = max(1, ceil(days / 6))`
-- Stages run in sequence; stage X (plumbing) and XI (electrical) start together with IX (paint).
-- S-curve weights = stage borongan cost ÷ total; planned progress spread evenly over each stage's weeks. Actual = Σ weight × user-entered stage % (cumulative). Status: TERLAMBAT if deviation < −5%, LEBIH CEPAT if > +5%.
+- `days(stage) = ceil(Σ OH(stage) / crew)` (0 when the stage has no OH), `weeks = max(1, ceil(days / 6))`
+- Stages run in sequence: each stage starts the week after the stage listed before it ends.
+- Exception: X (plumbing) and XI (electrical) start in the same week as IX (paint).
+- XII therefore starts the week after **XI** ends, even if IX is still running. The workbook's Kurva-S sheet does this (`C16 = C15 + D15`). For 2 lantai, IX takes 2 weeks and XI takes 1, so XII overlaps IX's second week and the total is 24 weeks, not 25.
+- `duration_weeks = max(start + weeks) − 1` over all stages.
+- S-curve weights = stage borongan cost ÷ Σ stage borongan cost (before contingency and tax). Planned progress is spread evenly over each stage's weeks. Actual = Σ weight × user-entered stage % (cumulative).
+- Status: TERLAMBAT if deviation < −5%, LEBIH CEPAT if > +5%, otherwise SESUAI RENCANA.
 
 Price-per-m² control (standard items only):
 - `per_m2_borongan = Σ JUMLAH(items with item_type = Standar) / building_area`, checked against the class range
 - Swakelola: same sum without margin, checked against `range / (1 + margin)`
 - Labor: `Σ upah(Standar) × (1 + margin) / area`, checked against the borongan jasa range
-- Status: "Dalam rentang pasar" / "Di bawah rentang (x%)" / "Di atas rentang (+x%)"
+- Status (exact text):
+  - `Dalam rentang pasar`
+  - `Di bawah rentang (x%) — periksa apakah ada pekerjaan/spesifikasi yang terlewat`, with x = value ÷ minimum − 1
+  - `Di atas rentang (+x%) — periksa spesifikasi atau harga yang terlalu tinggi`, with x = value ÷ maximum − 1
+  - x is a whole percent rounded half away from zero (Excel `TEXT(…, "0%")`), e.g. `-9%`
 - Tambahan (excluded): stage XII (dapur), XIII (carport, kanopi, pagar, gate), toren, pompa air, shower set; also delivery, contingency, tax.
 
 ## 4. Business rules (decided)
@@ -82,3 +97,13 @@ Edit tests (Tipe 36): granit +Rp20.000/dus → swakelola +589,042, borongan +627
 - Missing standard items: gutters & downpipes, bak kontrol & drainage, sumur resapan, AC power points, exhaust fans, lightning rod (Tambahan: water heater, AC units).
 - Region pricing: DKI only in v1; other regions via the province/kab-kota factors in Database Harga v3.
 - Ready-mix concrete + pump as an alternative to site-mix.
+
+## 8. Changelog
+- **v1.1 (2026-10-02):** Wrote in the workbook behaviour that the golden values depend on:
+  - effective coefficients (OH to 4 decimals, material coefficient including waste to 5 decimals)
+  - the XII-after-XI scheduling rule
+  - the pack tolerance
+  - exact status texts, including SESUAI RENCANA
+  - the Volume-sheet row layout
+
+  The calculation and the golden values are unchanged.
