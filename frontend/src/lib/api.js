@@ -19,3 +19,9 @@ export const deleteProject = (id) =>
 
 export const searchMaterials = (payload) =>
   axios.post(`${API}/materials/search`, payload).then((r) => r.data);
+
+export const getRabTemplates = () =>
+  axios.get(`${API}/rab/templates`).then((r) => r.data);
+
+export const calculateRab = (request) =>
+  axios.post(`${API}/rab/calculate`, request).then((r) => r.data);

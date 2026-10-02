@@ -47,13 +47,13 @@ export function newProject(info = {}) {
     country,
     currency: info.currency || currencyForCountry(country),
     estimateSettings: { overheadPct: info.overheadPct ?? 10 },
-    // Roof shape/pitch/overhang — drives roofArea in quantityEngine.js.
+    // Roof shape/pitch/overhang — pitch and overhang feed the RAB volumes
+    // ANG/OV in lib/rabInputs.js.
     // A uniform pitch is a reasonable default for any of the four roof
     // types; the type mainly changes the default waste factor there.
     roof: info.roof || { type: "gable", pitchDeg: 30, overhang: 0.5 },
-    // Which structural quick-estimate coefficients apply — see
-    // lib/materialCategories.js getStructuralCategories() and
-    // lib/quantityEngine.js for the per-system formulas.
+    // Kept for existing projects; the Buildora RAB templates assume a
+    // reinforced-concrete frame with masonry infill.
     structuralSystem: info.structuralSystem || "concrete",
     floors,
     materialSelections: {},

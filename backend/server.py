@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from materials import cache as materials_cache
 from materials.provider import MockMaterialResearchProvider
 from materials.schemas import MaterialSearchRequest, MaterialSearchResponse
+from rab.router import router as rab_router
 
 
 ROOT_DIR = Path(__file__).parent
@@ -126,6 +127,7 @@ async def search_materials(payload: MaterialSearchRequest):
     }
 
 
+api_router.include_router(rab_router)
 app.include_router(api_router)
 
 app.add_middleware(

@@ -1,17 +1,21 @@
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useProjectStore } from "@/store/useProjectStore";
 import { getProject, updateProject } from "@/lib/api";
-import { computeEstimate } from "@/lib/estimateEngine";
+import { useRab } from "@/hooks/useRab";
 import PlannerTopBar from "@/components/planner/PlannerTopBar";
 import ToolPalette from "@/components/planner/ToolPalette";
 import CanvasWorkspace from "@/components/planner/CanvasWorkspace";
 import Inspector from "@/components/planner/Inspector";
 import FloorSwitcher from "@/components/planner/FloorSwitcher";
 import StatusBar from "@/components/planner/StatusBar";
-import BOQView from "@/components/boq/BOQView";
-import CostSummary from "@/components/boq/CostSummary";
-import MaterialsView from "@/components/boq/MaterialsView";
+import { RabGate } from "@/components/rab/common";
+import RekapView from "@/components/rab/RekapView";
+import RabTableView from "@/components/rab/RabTableView";
+import BahanView from "@/components/rab/BahanView";
+import UpahView from "@/components/rab/UpahView";
+import JadwalView from "@/components/rab/JadwalView";
+import InputView from "@/components/rab/InputView";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -24,9 +28,6 @@ export default function Workspace() {
   const setTool = useProjectStore((s) => s.setTool);
   const undo = useProjectStore((s) => s.undo);
   const redo = useProjectStore((s) => s.redo);
-  const setHighlight = useProjectStore((s) => s.setHighlight);
-  const clearHighlight = useProjectStore((s) => s.clearHighlight);
-  const setActiveFloor = useProjectStore((s) => s.setActiveFloor);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -46,7 +47,14 @@ export default function Workspace() {
     };
   }, [id, setProject]);
 
-  const estimate = useMemo(() => (project ? computeEstimate(project) : null), [project]);
+  const rab = useRab(project);
+  // doSave reads the latest RAB result without re-creating the callback.
+  const rabResult = useRef(null);
+  rabResult.current = rab.result;
+
+  useEffect(() => {
+    if (rab.error) toast.error(rab.error);
+  }, [rab.error]);
 
   const doSave = useCallback(async () => {
     const state = useProjectStore.getState();
@@ -54,8 +62,14 @@ export default function Workspace() {
     if (!p) return;
     setSaving(true);
     try {
-      const r = computeEstimate(p);
-      const payload = { ...p, estimatedCost: r.grandTotal, buildingArea: r.buildingArea };
+      // Dashboard snapshot: the contractor (borongan) total, in rupiah.
+      const r = rabResult.current;
+      const payload = {
+        ...p,
+        currency: "IDR",
+        estimatedCost: r ? r.borongan.total : p.estimatedCost,
+        buildingArea: r ? r.building_area : p.buildingArea,
+      };
       await updateProject(p.id, payload);
       markSaved();
     } catch (e) {
@@ -103,16 +117,6 @@ export default function Workspace() {
     return () => window.removeEventListener("keydown", onKey);
   }, [undo, redo, setTool, doSave, tab, project]);
 
-  const onDrill = (row) => {
-    const ids = (row.sources || []).map((s) => s.id);
-    // jump to the floor of the first source
-    if (row.sources?.length) setActiveFloor(row.sources[0].floor);
-    setHighlight(ids);
-    setTab("plan");
-    toast.info(`Highlighting ${ids.length} source element(s) for "${row.name}"`);
-    setTimeout(() => clearHighlight(), 4000);
-  };
-
   if (loading || !project) {
     return (
       <div className="flex h-screen items-center justify-center bg-slate-50 text-slate-400">
@@ -130,7 +134,8 @@ export default function Workspace() {
         onSave={doSave}
         saving={saving}
         dirty={dirty}
-        grandTotal={estimate?.grandTotal || 0}
+        boronganTotal={rab.result?.borongan.total ?? null}
+        calculating={rab.loading}
       />
 
       {tab === "plan" && (
@@ -143,13 +148,22 @@ export default function Workspace() {
             </div>
             <Inspector />
           </div>
-          <StatusBar estimate={estimate} />
+          <StatusBar />
         </div>
       )}
 
-      {tab === "boq" && <BOQView estimate={estimate} onDrill={onDrill} />}
-      {tab === "cost" && <CostSummary estimate={estimate} />}
-      {tab === "materials" && <MaterialsView />}
+      {tab !== "plan" && (
+        <div className="min-h-0 flex-1">
+          <RabGate rab={rab}>
+            {tab === "rekap" && <RekapView rab={rab} />}
+            {tab === "rab" && <RabTableView rab={rab} />}
+            {tab === "bahan" && <BahanView rab={rab} />}
+            {tab === "upah" && <UpahView rab={rab} />}
+            {tab === "jadwal" && <JadwalView rab={rab} />}
+            {tab === "input" && <InputView rab={rab} />}
+          </RabGate>
+        </div>
+      )}
     </div>
   );
 }

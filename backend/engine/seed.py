@@ -71,12 +71,22 @@ def _volume_rows(volumes: List[Dict[str, Any]]) -> Dict[int, str]:
     return rows
 
 
+def _assign_item_codes(items: List[Dict[str, Any]]) -> None:
+    """Number items per stage in seed order — "II.3" is the 3rd item of stage
+    II, the same numbering as the workbook's RAB sheets."""
+    counters: Dict[str, int] = {}
+    for item in items:
+        counters[item["group"]] = counters.get(item["group"], 0) + 1
+        item["code"] = f'{item["group"]}.{counters[item["group"]]}'
+
+
 def load_project(template: str, spec_class: str = "Menengah") -> Project:
     seed = load_seed()
     if template not in seed:
         raise KeyError(f"Unknown template {template!r}; expected one of {TEMPLATES}")
     tpl = seed[template]
 
+    _assign_item_codes(tpl["items"])
     row_to_key = _volume_rows(tpl["volumes"])
     volumes = [
         {

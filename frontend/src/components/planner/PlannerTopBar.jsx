@@ -1,16 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { formatMoney } from "@/lib/format";
-import { ChevronLeft, Save, Loader2, Check, PencilRuler, Table2, PieChart, Tags } from "lucide-react";
+import { formatRupiah } from "@/lib/format";
+import {
+  ChevronLeft, Save, Loader2, Check, PencilRuler, Table2, LayoutDashboard, Package, HardHat, CalendarDays, SlidersHorizontal,
+} from "lucide-react";
 
 const TABS = [
-  { id: "plan", label: "Floor Plan", icon: PencilRuler, testid: "tab-plan-button" },
-  { id: "boq", label: "BOQ", icon: Table2, testid: "boq-tab-button" },
-  { id: "cost", label: "Cost Summary", icon: PieChart, testid: "tab-cost-button" },
-  { id: "materials", label: "Materials", icon: Tags, testid: "tab-materials-button" },
+  { id: "plan", label: "Denah", icon: PencilRuler, testid: "tab-plan-button" },
+  { id: "rekap", label: "Rekap", icon: LayoutDashboard, testid: "tab-rekap-button" },
+  { id: "rab", label: "RAB", icon: Table2, testid: "tab-rab-button" },
+  { id: "bahan", label: "Bahan", icon: Package, testid: "tab-bahan-button" },
+  { id: "upah", label: "Upah", icon: HardHat, testid: "tab-upah-button" },
+  { id: "jadwal", label: "Jadwal", icon: CalendarDays, testid: "tab-jadwal-button" },
+  { id: "input", label: "Input", icon: SlidersHorizontal, testid: "tab-input-button" },
 ];
 
-export default function PlannerTopBar({ project, activeTab, setActiveTab, onSave, saving, dirty, grandTotal }) {
+export default function PlannerTopBar({ project, activeTab, setActiveTab, onSave, saving, dirty, boronganTotal, calculating }) {
   const navigate = useNavigate();
   return (
     <header className="flex h-14 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-3">
@@ -33,7 +38,7 @@ export default function PlannerTopBar({ project, activeTab, setActiveTab, onSave
               key={t.id}
               data-testid={t.testid}
               onClick={() => setActiveTab(t.id)}
-              className={`flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-sm font-medium transition-all ${
+              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all ${
                 active ? "bg-white text-[#1E56A0] shadow-sm" : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -45,9 +50,11 @@ export default function PlannerTopBar({ project, activeTab, setActiveTab, onSave
 
       <div className="flex items-center gap-3">
         <div className="text-right">
-          <div className="text-[10px] uppercase tracking-wide text-slate-400">Est. Total</div>
+          <div className="flex items-center justify-end gap-1 text-[10px] uppercase tracking-wide text-slate-400">
+            {calculating && <Loader2 className="h-3 w-3 animate-spin" />} Total borongan
+          </div>
           <div data-testid="topbar-total-cost" className="font-mono text-sm font-bold text-[#1E56A0]">
-            {formatMoney(grandTotal, project?.currency || "USD")}
+            {boronganTotal == null ? "—" : formatRupiah(boronganTotal)}
           </div>
         </div>
         <Button onClick={onSave} disabled={saving} variant={dirty ? "default" : "outline"} className={dirty ? "bg-[#1E56A0] hover:bg-[#163E75]" : ""} data-testid="save-project-button">

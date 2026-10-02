@@ -6,6 +6,7 @@ on:
     branches: [main]
 
 jobs:
+  # Job id is a required status check on main — keep the name.
   engine-tests:
     runs-on: ubuntu-latest
     defaults:
@@ -18,7 +19,40 @@ jobs:
         with:
           python-version: "3.12"
 
-      # The engine is stdlib-only; pytest.ini requires pytest-xdist.
-      - run: pip install "pytest>=8" "pytest-xdist>=3.6"
+      # The engine is stdlib-only; the RAB API adds FastAPI/pydantic (versions
+      # as in requirements.txt). pytest.ini requires pytest-xdist.
+      - run: pip install "pytest>=8" "pytest-xdist>=3.6" "fastapi==0.110.1" "pydantic>=2.6.4"
 
-      - run: python -m pytest tests/test_engine.py -v
+      - name: Golden tests
+        run: python -m pytest tests/test_engine.py -v
+
+      - name: RAB API tests
+        run: python -m pytest tests/test_rab_api.py -v
+
+  frontend-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: yarn
+          cache-dependency-path: frontend/yarn.lock
+
+      - run: yarn install --frozen-lockfile
+
+      - name: Unit tests
+        run: yarn test --watchAll=false
+        env:
+          CI: "true"
+
+      # CI=false: the existing react-hooks warnings in CanvasWorkspace.jsx
+      # shouldn't fail the build.
+      - name: Build
+        run: yarn build
+        env:
+          CI: "false"
