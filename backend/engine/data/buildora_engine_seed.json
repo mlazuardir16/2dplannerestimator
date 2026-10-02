@@ -1,0 +1,4010 @@
+{
+ "tipe36_1lantai": {
+  "description": "Tipe 36/72 · 1 lantai · 2 KT · 1 KM · Menengah · DKI Jakarta",
+  "crew_default": 5,
+  "volumes": [
+   {
+    "key": "W",
+    "label": "Lebar bangunan",
+    "input": true,
+    "value_or_formula": 6,
+    "unit": "m",
+    "computed": 6
+   },
+   {
+    "key": "D",
+    "label": "Panjang bangunan",
+    "input": true,
+    "value_or_formula": 6,
+    "unit": "m",
+    "computed": 6
+   },
+   {
+    "key": "H",
+    "label": "Tinggi dinding (sloof s/d ring balok)",
+    "input": true,
+    "value_or_formula": 3.2,
+    "unit": "m",
+    "computed": 3.2
+   },
+   {
+    "key": "LI",
+    "label": "Panjang dinding dalam",
+    "input": true,
+    "value_or_formula": 10.5,
+    "unit": "m",
+    "computed": 10.5
+   },
+   {
+    "key": "OP",
+    "label": "Luas bukaan pintu + jendela",
+    "input": true,
+    "value_or_formula": 14.29,
+    "unit": "m²",
+    "computed": 14.29
+   },
+   {
+    "key": "OPW",
+    "label": "Lebar bukaan total (untuk balok latei)",
+    "input": true,
+    "value_or_formula": 9.3,
+    "unit": "m",
+    "computed": 9.3
+   },
+   {
+    "key": "NB",
+    "label": "Jumlah bukaan",
+    "input": true,
+    "value_or_formula": 10,
+    "unit": "buah",
+    "computed": 10
+   },
+   {
+    "key": "ANG",
+    "label": "Kemiringan atap",
+    "input": true,
+    "value_or_formula": 30,
+    "unit": "°",
+    "computed": 30
+   },
+   {
+    "key": "OV",
+    "label": "Overstek",
+    "input": true,
+    "value_or_formula": 0.6,
+    "unit": "m",
+    "computed": 0.6
+   },
+   {
+    "key": "NK",
+    "label": "Jumlah kolom 15×15",
+    "input": true,
+    "value_or_formula": 12,
+    "unit": "buah",
+    "computed": 12
+   },
+   {
+    "key": "TE",
+    "label": "Teras",
+    "input": true,
+    "value_or_formula": 4.5,
+    "unit": "m²",
+    "computed": 4.5
+   },
+   {
+    "key": "CP",
+    "label": "Carport",
+    "input": true,
+    "value_or_formula": 15,
+    "unit": "m²",
+    "computed": 15
+   },
+   {
+    "key": "PG",
+    "label": "Lebar depan kavling (pagar)",
+    "input": true,
+    "value_or_formula": 6,
+    "unit": "m",
+    "computed": 6
+   },
+   {
+    "key": "GT",
+    "label": "Lebar pintu pagar",
+    "input": true,
+    "value_or_formula": 3,
+    "unit": "m",
+    "computed": 3
+   },
+   {
+    "key": "KM",
+    "label": "Luas lantai KM",
+    "input": true,
+    "value_or_formula": 3,
+    "unit": "m²",
+    "computed": 3
+   },
+   {
+    "key": "KMW",
+    "label": "Keramik dinding KM (full height, Menengah)",
+    "input": true,
+    "value_or_formula": 15.4,
+    "unit": "m²",
+    "computed": 15.4
+   },
+   {
+    "key": "A",
+    "label": "Luas bangunan",
+    "input": false,
+    "value_or_formula": "=Volume!$B$6*Volume!$B$7",
+    "unit": "m²",
+    "computed": 36
+   },
+   {
+    "key": "LO",
+    "label": "Keliling dinding luar",
+    "input": false,
+    "value_or_formula": "=2*(Volume!$B$6+Volume!$B$7)",
+    "unit": "m",
+    "computed": 24
+   },
+   {
+    "key": "LT",
+    "label": "Panjang dinding total",
+    "input": false,
+    "value_or_formula": "=Volume!$B$24+Volume!$B$9",
+    "unit": "m",
+    "computed": 34.5
+   },
+   {
+    "key": "GA",
+    "label": "Luas ampig (2 sisi pelana)",
+    "input": false,
+    "value_or_formula": "=2*0.5*Volume!$B$6*(Volume!$B$6/2)*TAN(RADIANS(Volume!$B$13))",
+    "unit": "m²",
+    "computed": 10.3923048454133
+   },
+   {
+    "key": "DW",
+    "label": "Luas dinding bata ringan bersih",
+    "input": false,
+    "value_or_formula": "=Volume!$B$25*Volume!$B$8-Volume!$B$10+Volume!$B$26",
+    "unit": "m²",
+    "computed": 106.502304845413
+   },
+   {
+    "key": "PL",
+    "label": "Plester + acian (dua sisi; ampig hanya sisi luar)",
+    "input": false,
+    "value_or_formula": "=2*(Volume!$B$25*Volume!$B$8-Volume!$B$10)+Volume!$B$26",
+    "unit": "m²",
+    "computed": 202.612304845413
+   },
+   {
+    "key": "EXT",
+    "label": "Cat eksterior",
+    "input": false,
+    "value_or_formula": "=Volume!$B$24*Volume!$B$8-Volume!$B$10*0.7+Volume!$B$26",
+    "unit": "m²",
+    "computed": 77.1893048454133
+   },
+   {
+    "key": "INT",
+    "label": "Cat interior dinding",
+    "input": false,
+    "value_or_formula": "=Volume!$B$28-Volume!$B$29",
+    "unit": "m²",
+    "computed": 125.423
+   },
+   {
+    "key": "GL",
+    "label": "Galian pondasi (lebar 0,9 × dalam 0,8)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$25*0.9*0.8",
+    "unit": "m³",
+    "computed": 24.84
+   },
+   {
+    "key": "PS",
+    "label": "Urugan pasir bawah pondasi 5 cm",
+    "input": false,
+    "value_or_formula": "=Volume!$B$25*0.9*0.05",
+    "unit": "m³",
+    "computed": 1.5525
+   },
+   {
+    "key": "BK",
+    "label": "Pasangan batu kali (atas 0,3; bawah 0,7; tinggi 0,6)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$25*(0.3+0.7)/2*0.6",
+    "unit": "m³",
+    "computed": 10.35
+   },
+   {
+    "key": "UK",
+    "label": "Urugan tanah kembali",
+    "input": false,
+    "value_or_formula": "=Volume!$B$31-Volume!$B$32-Volume!$B$33",
+    "unit": "m³",
+    "computed": 12.9375
+   },
+   {
+    "key": "UL",
+    "label": "Urugan pasir bawah lantai 10 cm",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$23+Volume!$B$16)*0.1",
+    "unit": "m³",
+    "computed": 4.05
+   },
+   {
+    "key": "RB",
+    "label": "Rabat beton lantai kerja 5 cm",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$23+Volume!$B$16)*0.05",
+    "unit": "m³",
+    "computed": 2.025
+   },
+   {
+    "key": "SL",
+    "label": "Sloof 15×20",
+    "input": false,
+    "value_or_formula": "=Volume!$B$25*0.15*0.2",
+    "unit": "m³",
+    "computed": 1.035
+   },
+   {
+    "key": "KL",
+    "label": "Kolom 15×15",
+    "input": false,
+    "value_or_formula": "=Volume!$B$15*0.15*0.15*Volume!$B$8",
+    "unit": "m³",
+    "computed": 0.864
+   },
+   {
+    "key": "RG",
+    "label": "Ring balok 12×15",
+    "input": false,
+    "value_or_formula": "=Volume!$B$25*0.12*0.15",
+    "unit": "m³",
+    "computed": 0.621
+   },
+   {
+    "key": "LA",
+    "label": "Balok latei 12×12",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$11+0.2*Volume!$B$12)*0.12*0.12",
+    "unit": "m³",
+    "computed": 0.16272
+   },
+   {
+    "key": "AM",
+    "label": "Bingkai ampig 12×12",
+    "input": false,
+    "value_or_formula": "=2*2*(Volume!$B$6/2/COS(RADIANS(Volume!$B$13)))*0.12*0.12",
+    "unit": "m³",
+    "computed": 0.199532253031935
+   },
+   {
+    "key": "RF",
+    "label": "Luas atap miring",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$6+2*Volume!$B$14)*(Volume!$B$7+2*Volume!$B$14)/COS(RADIANS(Volume!$B$13))",
+    "unit": "m²",
+    "computed": 59.8596759095804
+   },
+   {
+    "key": "LS",
+    "label": "Lisplang",
+    "input": false,
+    "value_or_formula": "=2*(Volume!$B$7+2*Volume!$B$14)+4*((Volume!$B$6+2*Volume!$B$14)/2/COS(RADIANS(Volume!$B$13)))",
+    "unit": "m'",
+    "computed": 31.0276877526612
+   },
+   {
+    "key": "GR",
+    "label": "Lantai granit (ruang dalam, di luar KM)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$23-Volume!$B$20-Volume!$B$25*0.1",
+    "unit": "m²",
+    "computed": 29.55
+   },
+   {
+    "key": "PT",
+    "label": "Plint",
+    "input": false,
+    "value_or_formula": "=2*Volume!$B$25-Volume!$B$12*0.8",
+    "unit": "m'",
+    "computed": 61
+   },
+   {
+    "key": "PF",
+    "label": "Plafon (rumah + teras)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$23+Volume!$B$16",
+    "unit": "m²",
+    "computed": 40.5
+   },
+   {
+    "key": "PGW",
+    "label": "Pagar hollow di atas tembok bawah",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$18-Volume!$B$19)*1.2",
+    "unit": "m²",
+    "computed": 3.6
+   },
+   {
+    "key": "PGB",
+    "label": "Tembok pagar bawah + kolom",
+    "input": false,
+    "value_or_formula": "=Volume!$B$18*0.6",
+    "unit": "m²",
+    "computed": 3.6
+   },
+   {
+    "key": "GTA",
+    "label": "Pintu pagar geser",
+    "input": false,
+    "value_or_formula": "=Volume!$B$19*1.8",
+    "unit": "m²",
+    "computed": 5.4
+   },
+   {
+    "key": "NOKL",
+    "label": "Panjang nok",
+    "input": false,
+    "value_or_formula": "=Volume!$B$7+2*Volume!$B$14",
+    "unit": "m'",
+    "computed": 7.2
+   },
+   {
+    "key": "INTP",
+    "label": "Cat interior (dinding + plafon)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$30+Volume!$B$46",
+    "unit": "m²",
+    "computed": 165.923
+   }
+  ],
+  "items": [
+   {
+    "group": "I",
+    "name": "Bouwplank & pengukuran",
+    "volume": "A",
+    "unit": "m²",
+    "materials": {
+     "KYB": 1
+    },
+    "labor_OH": {
+     "TKY": 0.05,
+     "PKJ": 0.05
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "I",
+    "name": "Pembersihan lahan",
+    "volume": "1",
+    "unit": "ls",
+    "materials": {},
+    "labor_OH": {
+     "PKJ": 15
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "I",
+    "name": "Air & listrik kerja",
+    "volume": "1",
+    "unit": "ls",
+    "materials": {
+     "AIR": 1
+    },
+    "labor_OH": {},
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Galian tanah pondasi",
+    "volume": "GL",
+    "unit": "m³",
+    "materials": {},
+    "labor_OH": {
+     "PKJ": 0.6375,
+     "MDR": 0.02125
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Urugan pasir bawah pondasi",
+    "volume": "PS",
+    "unit": "m³",
+    "materials": {
+     "PSU": 1.2
+    },
+    "labor_OH": {
+     "PKJ": 0.255,
+     "MDR": 0.0085
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Pasangan batu kali 1:4",
+    "volume": "BK",
+    "unit": "m³",
+    "materials": {
+     "BTK": 1.2,
+     "SMN": 163,
+     "PSP": 0.52
+    },
+    "labor_OH": {
+     "PKJ": 0.8999999999999999,
+     "TKG": 0.44999999999999996,
+     "KTK": 0.045,
+     "MDR": 0.045
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Urugan tanah kembali",
+    "volume": "UK",
+    "unit": "m³",
+    "materials": {},
+    "labor_OH": {
+     "PKJ": 0.3875,
+     "MDR": 0.012400000000000001
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Urugan pasir bawah lantai",
+    "volume": "UL",
+    "unit": "m³",
+    "materials": {
+     "PSU": 1.2
+    },
+    "labor_OH": {
+     "PKJ": 0.255,
+     "MDR": 0.0085
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Rabat beton lantai kerja K-175",
+    "volume": "RB",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764
+    },
+    "labor_OH": {
+     "PKJ": 0.7424999999999999,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.0126,
+     "MDR": 0.03735
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Sloof 15×20 (4D10, Ø6-15)",
+    "volume": "SL",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D10": 82.3,
+     "D6": 30.6,
+     "KWT": 1.6935,
+     "MPX": 1.16375,
+     "KSO": 13.0625,
+     "PKU": 1.33,
+     "MYK": 0.665
+    },
+    "labor_OH": {
+     "PKJ": 5.482900000000001,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.28913500000000003,
+     "MDR": 0.280015,
+     "TBS": 0.7903,
+     "TKY": 1.9750500000000004
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Kolom 15×15 (4D10, Ø6-15)",
+    "volume": "KL",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D10": 109.7,
+     "D6": 34.2,
+     "KWT": 2.1585,
+     "MPX": 1.16375,
+     "KSO": 13.0625,
+     "PKU": 1.33,
+     "MYK": 0.665
+    },
+    "labor_OH": {
+     "PKJ": 5.699900000000001,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.31083500000000003,
+     "MDR": 0.29241500000000004,
+     "TBS": 1.0073,
+     "TKY": 1.9750500000000004
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Ring balok 12×15 (4D10, Ø6-15)",
+    "volume": "RG",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D10": 137.1,
+     "D6": 37.8,
+     "KWT": 2.6234999999999995,
+     "MPX": 1.46125,
+     "KSO": 16.40178571428571,
+     "PKU": 1.67,
+     "MYK": 0.835
+    },
+    "labor_OH": {
+     "PKJ": 6.9267,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.38302499999999995,
+     "MDR": 0.355305,
+     "TBS": 1.2243,
+     "TKY": 2.47995
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Balok latei 12×12 (4D8, Ø6-15)",
+    "volume": "LA",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D8": 109.7,
+     "D6": 41.1,
+     "KWT": 2.262,
+     "MPX": 2.1875,
+     "KSO": 24.553571428571427,
+     "PKU": 2.5,
+     "MYK": 1.25
+    },
+    "labor_OH": {
+     "PKJ": 9.2231,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.48941,
+     "MDR": 0.46892,
+     "TBS": 1.0556,
+     "TKY": 3.7125000000000004
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Bingkai ampig 12×12 (4D8, Ø6-15)",
+    "volume": "AM",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D8": 109.7,
+     "D6": 41.1,
+     "KWT": 2.262,
+     "MPX": 1.46125,
+     "KSO": 16.40178571428571,
+     "PKU": 1.67,
+     "MYK": 0.835
+    },
+    "labor_OH": {
+     "PKJ": 6.758,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.366155,
+     "MDR": 0.345665,
+     "TBS": 1.0556,
+     "TKY": 2.47995
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IV",
+    "name": "Pasangan bata ringan 10 cm",
+    "volume": "DW",
+    "unit": "m²",
+    "materials": {
+     "BRG": 8.715,
+     "MRT": 7.5
+    },
+    "labor_OH": {
+     "PKJ": 0.18,
+     "TKG": 0.06,
+     "KTK": 0.006,
+     "MDR": 0.009
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IV",
+    "name": "Plesteran + acian",
+    "volume": "PL",
+    "unit": "m²",
+    "materials": {
+     "SMN": 9.49,
+     "PSP": 0.024
+    },
+    "labor_OH": {
+     "PKJ": 0.3,
+     "TKG": 0.15,
+     "KTK": 0.015,
+     "MDR": 0.015
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Rangka atap baja ringan",
+    "volume": "RF",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 201600,
+    "package_source": "ATP-RNG-01 — harga terpasang aplikator",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Genteng beton",
+    "volume": "RF",
+    "unit": "m²",
+    "materials": {
+     "GNT": 10
+    },
+    "labor_OH": {
+     "TKG": 0.35,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Nok / bubungan",
+    "volume": "NOKL",
+    "unit": "m'",
+    "materials": {
+     "NOK": 3,
+     "SMN": 3,
+     "PSP": 0.01
+    },
+    "labor_OH": {
+     "TKG": 0.15,
+     "PKJ": 0.1
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Lisplang GRC 20 cm",
+    "volume": "LS",
+    "unit": "m'",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 90000,
+    "package_source": "ATP-LSP-01 — dipasang aplikator atap",
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VI",
+    "name": "Plafon gypsum 9 mm + rangka hollow",
+    "volume": "PF",
+    "unit": "m²",
+    "materials": {
+     "GYP": 0.3472222222222222,
+     "HLW": 0.75,
+     "CMP": 0.35
+    },
+    "labor_OH": {
+     "TKY": 0.2,
+     "PKJ": 0.1
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Granit HT 60×60",
+    "volume": "GR",
+    "unit": "m²",
+    "materials": {
+     "GRN": 1,
+     "SMN": 10,
+     "PSP": 0.045,
+     "NAT": 0.3
+    },
+    "labor_OH": {
+     "TKG": 0.3,
+     "PKJ": 0.17
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Plint granit (potongan 10 cm)",
+    "volume": "PT",
+    "unit": "m'",
+    "materials": {
+     "GRN": 0.1,
+     "SMN": 1,
+     "NAT": 0.05
+    },
+    "labor_OH": {
+     "TKG": 0.08,
+     "PKJ": 0.045
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Keramik lantai KM anti-slip",
+    "volume": "KM",
+    "unit": "m²",
+    "materials": {
+     "KKM": 1,
+     "SMN": 10,
+     "PSP": 0.045,
+     "NAT": 1.0
+    },
+    "labor_OH": {
+     "TKG": 0.26,
+     "PKJ": 0.15
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Keramik dinding KM",
+    "volume": "KMW",
+    "unit": "m²",
+    "materials": {
+     "KDW": 1,
+     "SMN": 9.3,
+     "PSP": 0.018,
+     "NAT": 0.5
+    },
+    "labor_OH": {
+     "TKG": 0.26,
+     "PKJ": 0.15
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Keramik teras 40×40",
+    "volume": "TE",
+    "unit": "m²",
+    "materials": {
+     "KTR": 1,
+     "SMN": 10,
+     "PSP": 0.045,
+     "NAT": 0.5
+    },
+    "labor_OH": {
+     "TKG": 0.26,
+     "PKJ": 0.15
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Pintu utama aluminium + kusen + kunci",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 2796200,
+    "package_source": "PNT-UT-04 + KNC-01 — dipasang toko aluminium",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Pintu kamar HPL + kusen aluminium (2 kamar + belakang)",
+    "volume": "3",
+    "unit": "unit",
+    "materials": {
+     "PKT": 1,
+     "KSN": 1,
+     "KNC": 1
+    },
+    "labor_OH": {
+     "TKY": 1,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Pintu KM PVC",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {
+     "PKM": 1
+    },
+    "labor_OH": {
+     "TKY": 1,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Jendela aluminium + kaca",
+    "volume": "5.76",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 1547000,
+    "package_source": "JND-01 — dipasang toko aluminium",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Bovenlight KM kaca mati",
+    "volume": "0.2",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 950000,
+    "package_source": "JND-05 — dipasang toko aluminium",
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IX",
+    "name": "Cat interior Catylac (dinding + plafon)",
+    "volume": "INTP",
+    "unit": "m²",
+    "materials": {
+     "PLM": 0.1,
+     "CDI": 0.1,
+     "CTL": 0.26
+    },
+    "labor_OH": {
+     "PKJ": 0.02,
+     "TCT": 0.063,
+     "KTK": 0.0063,
+     "MDR": 0.0025
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IX",
+    "name": "Cat eksterior Weathershield",
+    "volume": "EXT",
+    "unit": "m²",
+    "materials": {
+     "CDE": 0.1,
+     "WSH": 0.1925925925925926
+    },
+    "labor_OH": {
+     "PKJ": 0.02,
+     "TCT": 0.063,
+     "KTK": 0.0063,
+     "MDR": 0.0025
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Kloset duduk + jet shower",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {
+     "KLS": 1,
+     "JTS": 1
+    },
+    "labor_OH": {
+     "TPP": 1,
+     "PKJ": 0.5
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Shower set",
+    "volume": "1",
+    "unit": "set",
+    "materials": {
+     "SHW": 1
+    },
+    "labor_OH": {
+     "TPP": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "X",
+    "name": "Wastafel + kran",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {
+     "WST": 1
+    },
+    "labor_OH": {
+     "TPP": 0.5
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Floor drain",
+    "volume": "2",
+    "unit": "buah",
+    "materials": {
+     "FDR": 1
+    },
+    "labor_OH": {
+     "TPP": 0.2
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Kran air",
+    "volume": "4",
+    "unit": "buah",
+    "materials": {
+     "KRN": 1
+    },
+    "labor_OH": {
+     "TPP": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Pipa PVC AW ½\" air bersih",
+    "volume": "25",
+    "unit": "m'",
+    "materials": {
+     "PAW": 1,
+     "FTP": 1
+    },
+    "labor_OH": {
+     "PKJ": 0.036,
+     "TPP": 0.06,
+     "KTK": 0.006,
+     "MDR": 0.0018
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Pipa PVC D 3\" air bekas",
+    "volume": "10",
+    "unit": "m'",
+    "materials": {
+     "PD3": 1,
+     "FTP": 1
+    },
+    "labor_OH": {
+     "PKJ": 0.05399999999999999,
+     "TPP": 0.09,
+     "KTK": 0.009000000000000001,
+     "MDR": 0.0027
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Pipa PVC D 4\" air kotor",
+    "volume": "8",
+    "unit": "m'",
+    "materials": {
+     "PD4": 1,
+     "FTP": 1
+    },
+    "labor_OH": {
+     "PKJ": 0.05399999999999999,
+     "TPP": 0.09,
+     "KTK": 0.009000000000000001,
+     "MDR": 0.0027
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Toren 1.000 L",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {
+     "TRN": 1
+    },
+    "labor_OH": {
+     "TPP": 2,
+     "PKJ": 1.5
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "X",
+    "name": "Pompa air 125 W",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {
+     "PMP": 1
+    },
+    "labor_OH": {
+     "TPP": 0.5,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "X",
+    "name": "Septictank biofil 1.000 L",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 3762900,
+    "package_source": "AIR-SPT-PKT — dipasang penjual",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XI",
+    "name": "Titik lampu + downlight",
+    "volume": "10",
+    "unit": "titik",
+    "materials": {
+     "K15": 8,
+     "CDT": 8,
+     "DLT": 1
+    },
+    "labor_OH": {
+     "TLS": 0.35,
+     "PKJ": 0.25
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XI",
+    "name": "Titik saklar / stop kontak",
+    "volume": "14",
+    "unit": "titik",
+    "materials": {
+     "K25": 5,
+     "K15": 2.5,
+     "CDT": 7.5,
+     "SKL": 1
+    },
+    "labor_OH": {
+     "TLS": 0.35,
+     "PKJ": 0.25
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XI",
+    "name": "Box MCB 6 grup + MCB",
+    "volume": "1",
+    "unit": "set",
+    "materials": {
+     "MCB": 1
+    },
+    "labor_OH": {
+     "TLS": 0.5
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XII",
+    "name": "Meja dapur beton + sink + kran",
+    "volume": "1",
+    "unit": "ls",
+    "materials": {
+     "MDP": 1,
+     "SNK": 1
+    },
+    "labor_OH": {
+     "TKG": 4,
+     "PKJ": 3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Estimasi",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Carport beton bertulang 12 cm (D8-200)",
+    "volume": "CP",
+    "unit": "m²",
+    "materials": {
+     "SMN": 39.12,
+     "PSB": 0.06516,
+     "SPL": 0.09168,
+     "D8": 3.95,
+     "KWT": 0.06,
+     "PSU": 0.05
+    },
+    "labor_OH": {
+     "PKJ": 0.11674999999999999,
+     "TKG": 0.01485,
+     "KTK": 0.0042769999999999996,
+     "MDR": 0.006062,
+     "TBS": 0.02765
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Kanopi baja ringan + Alderon",
+    "volume": "CP",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 600000,
+    "package_source": "KNP-01 — harga terpasang",
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Tembok pagar bawah (bata ringan, plester 2 sisi, cat)",
+    "volume": "PGB",
+    "unit": "m²",
+    "materials": {
+     "BRG": 8.715,
+     "MRT": 7.5,
+     "SMN": 18.98,
+     "PSP": 0.048,
+     "CDE": 0.2,
+     "WSH": 0.3851851851851852
+    },
+    "labor_OH": {
+     "PKJ": 0.8200000000000001,
+     "TKG": 0.36,
+     "KTK": 0.0486,
+     "MDR": 0.044,
+     "TCT": 0.126
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Pagar besi hollow",
+    "volume": "PGW",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 895900,
+    "package_source": "PGR-01 — harga terpasang bengkel las",
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Pintu pagar geser",
+    "volume": "GTA",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 1650000,
+    "package_source": "PPG-02 — harga terpasang bengkel las",
+    "reference": "Estimasi",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Rel + roda pintu pagar",
+    "volume": "1",
+    "unit": "set",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 650000,
+    "package_source": "PPG-05 — harga terpasang",
+    "reference": "Estimasi",
+    "item_type": "Tambahan"
+   }
+  ],
+  "golden": {
+   "total_swakelola": 225677253,
+   "total_borongan": 244786045,
+   "per_m2_standard_swakelola": 4645936,
+   "per_m2_standard_borongan": 5342826,
+   "upah_total": 55534640,
+   "duration_weeks": 18,
+   "price_check_status": "Dalam rentang pasar"
+  }
+ },
+ "materials": {
+  "SMN": {
+   "name": "Semen PCC",
+   "spec": "Tiga Roda / Gresik",
+   "pack": "zak 40 kg",
+   "pack_size": 40,
+   "base_unit": "kg",
+   "price_per_pack": 63000,
+   "waste": 0.05,
+   "source": "STR-SMN-01 × 40/50",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "PSP": {
+   "name": "Pasir pasang",
+   "spec": "",
+   "pack": "m³",
+   "pack_size": 1,
+   "base_unit": "m³",
+   "price_per_pack": 295200,
+   "waste": 0.1,
+   "source": "STR-PSR-00",
+   "reference": "Harga acuan",
+   "bulk": 1
+  },
+  "PSB": {
+   "name": "Pasir beton",
+   "spec": "",
+   "pack": "m³",
+   "pack_size": 1,
+   "base_unit": "m³",
+   "price_per_pack": 379000,
+   "waste": 0.1,
+   "source": "STR-PSR-02",
+   "reference": "Harga acuan",
+   "bulk": 1
+  },
+  "SPL": {
+   "name": "Batu split 1–2 cm",
+   "spec": "",
+   "pack": "m³",
+   "pack_size": 1,
+   "base_unit": "m³",
+   "price_per_pack": 385900,
+   "waste": 0.1,
+   "source": "STR-SPL-01",
+   "reference": "Harga acuan",
+   "bulk": 1
+  },
+  "PSU": {
+   "name": "Pasir urug",
+   "spec": "",
+   "pack": "m³",
+   "pack_size": 1,
+   "base_unit": "m³",
+   "price_per_pack": 209000,
+   "waste": 0.0,
+   "source": "STR-PSR-03",
+   "reference": "Harga acuan",
+   "bulk": 1
+  },
+  "BTK": {
+   "name": "Batu kali belah",
+   "spec": "",
+   "pack": "m³",
+   "pack_size": 1,
+   "base_unit": "m³",
+   "price_per_pack": 343200,
+   "waste": 0.0,
+   "source": "STR-BTK-01",
+   "reference": "Harga acuan",
+   "bulk": 1
+  },
+  "D10": {
+   "name": "Besi ulir D10 full SNI",
+   "spec": "12 m",
+   "pack": "batang",
+   "pack_size": 7.4,
+   "base_unit": "kg",
+   "price_per_pack": 85500,
+   "waste": 0.1,
+   "source": "STR-BSI-10",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "D8": {
+   "name": "Besi D8 full SNI",
+   "spec": "12 m",
+   "pack": "batang",
+   "pack_size": 4.74,
+   "base_unit": "kg",
+   "price_per_pack": 53800,
+   "waste": 0.1,
+   "source": "STR-BSI-08",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "D6": {
+   "name": "Besi polos Ø6",
+   "spec": "12 m, sengkang",
+   "pack": "batang",
+   "pack_size": 2.66,
+   "base_unit": "kg",
+   "price_per_pack": 30100,
+   "waste": 0.1,
+   "source": "Turunan Rp11.300/kg",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "KWT": {
+   "name": "Kawat bendrat",
+   "spec": "",
+   "pack": "kg",
+   "pack_size": 1,
+   "base_unit": "kg",
+   "price_per_pack": 26200,
+   "waste": 0.0,
+   "source": "STR-KWT-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "MPX": {
+   "name": "Multipleks 9 mm",
+   "spec": "122×244, bekisting (pakai ulang 4×)",
+   "pack": "lembar",
+   "pack_size": 1,
+   "base_unit": "lembar",
+   "price_per_pack": 214200,
+   "waste": 0.0,
+   "source": "STR-BKS-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "KSO": {
+   "name": "Kayu kaso 5/7",
+   "spec": "4 m, bekisting",
+   "pack": "batang",
+   "pack_size": 1,
+   "base_unit": "batang",
+   "price_per_pack": 38000,
+   "waste": 0.0,
+   "source": "STR-BKS-02",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "PKU": {
+   "name": "Paku 5–10 cm",
+   "spec": "",
+   "pack": "kg",
+   "pack_size": 1,
+   "base_unit": "kg",
+   "price_per_pack": 24200,
+   "waste": 0.0,
+   "source": "STR-BKS-03",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "MYK": {
+   "name": "Minyak bekisting",
+   "spec": "",
+   "pack": "liter",
+   "pack_size": 1,
+   "base_unit": "liter",
+   "price_per_pack": 26400,
+   "waste": 0.0,
+   "source": "STR-BKS-06",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "BRG": {
+   "name": "Bata ringan 10 cm",
+   "spec": "60×20×10 (±83 buah/m³)",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 9820,
+   "waste": 0.03,
+   "source": "DND-BRG-10 ÷ 83",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "MRT": {
+   "name": "Mortar instan bata ringan",
+   "spec": "",
+   "pack": "zak 40 kg",
+   "pack_size": 40,
+   "base_unit": "kg",
+   "price_per_pack": 87000,
+   "waste": 0.05,
+   "source": "STR-MRT-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "GNT": {
+   "name": "Genteng beton",
+   "spec": "±10 buah/m²",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 12450,
+   "waste": 0.03,
+   "source": "ATP-GNT-02 ÷ 10",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "NOK": {
+   "name": "Nok genteng beton",
+   "spec": "",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 8350,
+   "waste": 0.05,
+   "source": "SSH Badung × IKK",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "GYP": {
+   "name": "Papan gypsum 9 mm",
+   "spec": "120×240 (2,88 m²)",
+   "pack": "lembar",
+   "pack_size": 1,
+   "base_unit": "lembar",
+   "price_per_pack": 81500,
+   "waste": 0.1,
+   "source": "PLF-MAT-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "HLW": {
+   "name": "Hollow galvalum plafon 4×4 / 2×4",
+   "spec": "4 m",
+   "pack": "batang",
+   "pack_size": 1,
+   "base_unit": "batang",
+   "price_per_pack": 25000,
+   "waste": 0.05,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "CMP": {
+   "name": "Compound & sekrup gypsum",
+   "spec": "",
+   "pack": "sak 20 kg",
+   "pack_size": 20,
+   "base_unit": "kg",
+   "price_per_pack": 85000,
+   "waste": 0.05,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "GRN": {
+   "name": "Granit HT 60×60",
+   "spec": "KW1, 4 keping/dus",
+   "pack": "dus",
+   "pack_size": 1.44,
+   "base_unit": "m²",
+   "price_per_pack": 195000,
+   "waste": 0.05,
+   "source": "LNT-03 (median 3 toko)",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "KKM": {
+   "name": "Keramik lantai KM anti-slip 25×25",
+   "spec": "",
+   "pack": "dus (±1 m²)",
+   "pack_size": 1,
+   "base_unit": "m²",
+   "price_per_pack": 85000,
+   "waste": 0.1,
+   "source": "LKM-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "KDW": {
+   "name": "Keramik dinding KM 25×40",
+   "spec": "",
+   "pack": "dus (±1 m²)",
+   "pack_size": 1,
+   "base_unit": "m²",
+   "price_per_pack": 70000,
+   "waste": 0.1,
+   "source": "DKM-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "KTR": {
+   "name": "Keramik teras 40×40",
+   "spec": "6 keping/dus",
+   "pack": "dus",
+   "pack_size": 0.96,
+   "base_unit": "m²",
+   "price_per_pack": 60000,
+   "waste": 0.1,
+   "source": "LNT-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "NAT": {
+   "name": "Semen warna / nat",
+   "spec": "",
+   "pack": "bungkus 1 kg",
+   "pack_size": 1,
+   "base_unit": "kg",
+   "price_per_pack": 15000,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "PLM": {
+   "name": "Plamir tembok",
+   "spec": "",
+   "pack": "galon 5 kg",
+   "pack_size": 5,
+   "base_unit": "kg",
+   "price_per_pack": 150000,
+   "waste": 0.05,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "CDI": {
+   "name": "Cat dasar interior",
+   "spec": "",
+   "pack": "galon 5 kg",
+   "pack_size": 5,
+   "base_unit": "kg",
+   "price_per_pack": 200000,
+   "waste": 0.05,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "CTL": {
+   "name": "Cat Catylac interior",
+   "spec": "",
+   "pack": "galon 5 kg",
+   "pack_size": 5,
+   "base_unit": "kg",
+   "price_per_pack": 224000,
+   "waste": 0.05,
+   "source": "CAT-INT-02",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "CDE": {
+   "name": "Cat dasar eksterior",
+   "spec": "",
+   "pack": "galon 4 kg",
+   "pack_size": 4,
+   "base_unit": "kg",
+   "price_per_pack": 347500,
+   "waste": 0.05,
+   "source": "CAT-DSR-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "WSH": {
+   "name": "Dulux Weathershield",
+   "spec": "eksterior",
+   "pack": "galon 2,5 L",
+   "pack_size": 2.5,
+   "base_unit": "liter",
+   "price_per_pack": 490720,
+   "waste": 0.05,
+   "source": "CAT-EXT-02",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "PAW": {
+   "name": "Pipa PVC AW ½\"",
+   "spec": "4 m",
+   "pack": "batang",
+   "pack_size": 4,
+   "base_unit": "m",
+   "price_per_pack": 38000,
+   "waste": 0.1,
+   "source": "AIR-PP-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "PD3": {
+   "name": "Pipa PVC D 3\"",
+   "spec": "4 m",
+   "pack": "batang",
+   "pack_size": 4,
+   "base_unit": "m",
+   "price_per_pack": 160000,
+   "waste": 0.1,
+   "source": "AIR-PP-04",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "PD4": {
+   "name": "Pipa PVC D 4\"",
+   "spec": "4 m",
+   "pack": "batang",
+   "pack_size": 4,
+   "base_unit": "m",
+   "price_per_pack": 230000,
+   "waste": 0.1,
+   "source": "AIR-PP-05",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "FTP": {
+   "name": "Fitting, lem & klem pipa",
+   "spec": "per meter pipa",
+   "pack": "paket per m",
+   "pack_size": 1,
+   "base_unit": "m",
+   "price_per_pack": 7500,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "K15": {
+   "name": "Kabel NYM 2×1,5 mm²",
+   "spec": "",
+   "pack": "roll 50 m",
+   "pack_size": 50,
+   "base_unit": "m",
+   "price_per_pack": 575000,
+   "waste": 0.1,
+   "source": "LST-KBL-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "K25": {
+   "name": "Kabel NYM 3×2,5 mm²",
+   "spec": "",
+   "pack": "roll 50 m",
+   "pack_size": 50,
+   "base_unit": "m",
+   "price_per_pack": 1350000,
+   "waste": 0.1,
+   "source": "LST-KBL-03 × 50 m",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "CDT": {
+   "name": "Pipa conduit 20 mm",
+   "spec": "3 m",
+   "pack": "batang",
+   "pack_size": 3,
+   "base_unit": "m",
+   "price_per_pack": 12000,
+   "waste": 0.1,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "SKL": {
+   "name": "Saklar / stop kontak",
+   "spec": "standar",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 35000,
+   "waste": 0.0,
+   "source": "LST-SKL-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "DLT": {
+   "name": "Lampu downlight LED 9 W",
+   "spec": "",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 90000,
+   "waste": 0.0,
+   "source": "LST-LMP-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "MCB": {
+   "name": "Box MCB 6 grup + MCB",
+   "spec": "",
+   "pack": "set",
+   "pack_size": 1,
+   "base_unit": "set",
+   "price_per_pack": 700000,
+   "waste": 0.0,
+   "source": "LST-MCB-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "PKT": {
+   "name": "Daun pintu kamar HPL",
+   "spec": "±80×200",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 925000,
+   "waste": 0.0,
+   "source": "PNT-KT-02",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "KSN": {
+   "name": "Kusen pintu aluminium 3\"",
+   "spec": "",
+   "pack": "set",
+   "pack_size": 1,
+   "base_unit": "set",
+   "price_per_pack": 415000,
+   "waste": 0.0,
+   "source": "KSN-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "KNC": {
+   "name": "Kunci & engsel pintu",
+   "spec": "set standar",
+   "pack": "set",
+   "pack_size": 1,
+   "base_unit": "set",
+   "price_per_pack": 291200,
+   "waste": 0.0,
+   "source": "KNC-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "PKM": {
+   "name": "Pintu KM PVC",
+   "spec": "set",
+   "pack": "set",
+   "pack_size": 1,
+   "base_unit": "set",
+   "price_per_pack": 949900,
+   "waste": 0.0,
+   "source": "PKM-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "KLS": {
+   "name": "Kloset duduk",
+   "spec": "monoblok standar",
+   "pack": "unit",
+   "pack_size": 1,
+   "base_unit": "unit",
+   "price_per_pack": 1982500,
+   "waste": 0.0,
+   "source": "SNT-KD-01",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "JTS": {
+   "name": "Jet shower",
+   "spec": "",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 150000,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "SHW": {
+   "name": "Shower set",
+   "spec": "standar",
+   "pack": "set",
+   "pack_size": 1,
+   "base_unit": "set",
+   "price_per_pack": 425000,
+   "waste": 0.0,
+   "source": "SNT-SH-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "WST": {
+   "name": "Wastafel + kran",
+   "spec": "standar",
+   "pack": "unit",
+   "pack_size": 1,
+   "base_unit": "unit",
+   "price_per_pack": 800000,
+   "waste": 0.0,
+   "source": "SNT-WS-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "FDR": {
+   "name": "Floor drain",
+   "spec": "",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 80000,
+   "waste": 0.0,
+   "source": "SNT-FD-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "KRN": {
+   "name": "Kran air",
+   "spec": "",
+   "pack": "buah",
+   "pack_size": 1,
+   "base_unit": "buah",
+   "price_per_pack": 110000,
+   "waste": 0.0,
+   "source": "SNT-KR-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "TRN": {
+   "name": "Toren 1.000 L",
+   "spec": "",
+   "pack": "unit",
+   "pack_size": 1,
+   "base_unit": "unit",
+   "price_per_pack": 2300000,
+   "waste": 0.0,
+   "source": "AIR-TRN-02",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "PMP": {
+   "name": "Pompa air 125 W",
+   "spec": "",
+   "pack": "unit",
+   "pack_size": 1,
+   "base_unit": "unit",
+   "price_per_pack": 800000,
+   "waste": 0.0,
+   "source": "AIR-PMP-01",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "MDP": {
+   "name": "Bahan meja dapur",
+   "spec": "beton, keramik top & backsplash",
+   "pack": "paket",
+   "pack_size": 1,
+   "base_unit": "paket",
+   "price_per_pack": 2500000,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "SNK": {
+   "name": "Sink stainless + kran dapur",
+   "spec": "",
+   "pack": "set",
+   "pack_size": 1,
+   "base_unit": "set",
+   "price_per_pack": 900000,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "KYB": {
+   "name": "Kayu bouwplank",
+   "spec": "per m² bangunan",
+   "pack": "m²",
+   "pack_size": 1,
+   "base_unit": "m²",
+   "price_per_pack": 3000,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "AIR": {
+   "name": "Air & listrik kerja",
+   "spec": "",
+   "pack": "lot",
+   "pack_size": 1,
+   "base_unit": "lot",
+   "price_per_pack": 1500000,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "D12": {
+   "name": "Besi ulir D12 full SNI",
+   "spec": "12 m",
+   "pack": "batang",
+   "pack_size": 10.66,
+   "base_unit": "kg",
+   "price_per_pack": 120300,
+   "waste": 0.1,
+   "source": "Turunan Rp11.300/kg",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "D13": {
+   "name": "Besi ulir D13 full SNI",
+   "spec": "12 m",
+   "pack": "batang",
+   "pack_size": 12.48,
+   "base_unit": "kg",
+   "price_per_pack": 141300,
+   "waste": 0.1,
+   "source": "STR-BSI-13",
+   "reference": "Harga acuan",
+   "bulk": 0
+  },
+  "DLK": {
+   "name": "Dolken kayu 8–10 cm",
+   "spec": "4 m, penyangga bekisting (pakai ulang 4×)",
+   "pack": "batang",
+   "pack_size": 1,
+   "base_unit": "batang",
+   "price_per_pack": 25000,
+   "waste": 0.0,
+   "source": "Estimasi",
+   "reference": "Estimasi",
+   "bulk": 0
+  },
+  "MC2": {
+   "name": "Box MCB 12 grup + MCB",
+   "spec": "",
+   "pack": "set",
+   "pack_size": 1,
+   "base_unit": "set",
+   "price_per_pack": 1250000,
+   "waste": 0.0,
+   "source": "LST-MCB-02",
+   "reference": "Estimasi",
+   "bulk": 0
+  }
+ },
+ "labor_rates_per_day": {
+  "PKJ": {
+   "name": "Pekerja",
+   "rate": 130500
+  },
+  "TKG": {
+   "name": "Tukang batu",
+   "rate": 175300
+  },
+  "TKY": {
+   "name": "Tukang kayu",
+   "rate": 174700
+  },
+  "TBS": {
+   "name": "Tukang besi",
+   "rate": 174700
+  },
+  "TCT": {
+   "name": "Tukang cat",
+   "rate": 165000
+  },
+  "TLS": {
+   "name": "Tukang listrik",
+   "rate": 182800
+  },
+  "TPP": {
+   "name": "Tukang pipa",
+   "rate": 184400
+  },
+  "KTK": {
+   "name": "Kepala tukang",
+   "rate": 198900
+  },
+  "MDR": {
+   "name": "Mandor",
+   "rate": 228300
+  }
+ },
+ "stages": [
+  {
+   "code": "I",
+   "name": "PERSIAPAN"
+  },
+  {
+   "code": "II",
+   "name": "TANAH & PONDASI"
+  },
+  {
+   "code": "III",
+   "name": "STRUKTUR BETON"
+  },
+  {
+   "code": "IV",
+   "name": "DINDING"
+  },
+  {
+   "code": "V",
+   "name": "ATAP"
+  },
+  {
+   "code": "VI",
+   "name": "PLAFON"
+  },
+  {
+   "code": "VII",
+   "name": "LANTAI & KERAMIK"
+  },
+  {
+   "code": "VIII",
+   "name": "PINTU & JENDELA"
+  },
+  {
+   "code": "IX",
+   "name": "CAT"
+  },
+  {
+   "code": "X",
+   "name": "SANITAIR & PLUMBING"
+  },
+  {
+   "code": "XI",
+   "name": "LISTRIK"
+  },
+  {
+   "code": "XII",
+   "name": "DAPUR"
+  },
+  {
+   "code": "XIII",
+   "name": "CARPORT, KANOPI & PAGAR"
+  }
+ ],
+ "2lantai_lb108": {
+  "description": "2 lantai · luas bangunan 108 m² · tanah 6×15 m · 4 kamar tidur · 2 kamar mandi · paket Menengah · DKI Jakarta · harga Sep 2026",
+  "crew_default": 8,
+  "volumes": [
+   {
+    "key": "W",
+    "label": "Lebar bangunan",
+    "input": true,
+    "value_or_formula": 6,
+    "unit": "m",
+    "computed": 6
+   },
+   {
+    "key": "D",
+    "label": "Panjang bangunan",
+    "input": true,
+    "value_or_formula": 9,
+    "unit": "m",
+    "computed": 9
+   },
+   {
+    "key": "H1",
+    "label": "Tinggi dinding lantai 1",
+    "input": true,
+    "value_or_formula": 3.3,
+    "unit": "m",
+    "computed": 3.3
+   },
+   {
+    "key": "H2",
+    "label": "Tinggi dinding lantai 2",
+    "input": true,
+    "value_or_formula": 3.2,
+    "unit": "m",
+    "computed": 3.2
+   },
+   {
+    "key": "LI1",
+    "label": "Panjang dinding dalam lantai 1",
+    "input": true,
+    "value_or_formula": 16,
+    "unit": "m",
+    "computed": 16
+   },
+   {
+    "key": "LI2",
+    "label": "Panjang dinding dalam lantai 2",
+    "input": true,
+    "value_or_formula": 18,
+    "unit": "m",
+    "computed": 18
+   },
+   {
+    "key": "OP1",
+    "label": "Luas bukaan lantai 1",
+    "input": true,
+    "value_or_formula": 11.17,
+    "unit": "m²",
+    "computed": 11.17
+   },
+   {
+    "key": "OP2",
+    "label": "Luas bukaan lantai 2",
+    "input": true,
+    "value_or_formula": 15.76,
+    "unit": "m²",
+    "computed": 15.76
+   },
+   {
+    "key": "OPW",
+    "label": "Lebar bukaan total",
+    "input": true,
+    "value_or_formula": 17.3,
+    "unit": "m",
+    "computed": 17.3
+   },
+   {
+    "key": "NB",
+    "label": "Jumlah bukaan",
+    "input": true,
+    "value_or_formula": 18,
+    "unit": "buah",
+    "computed": 18
+   },
+   {
+    "key": "ANG",
+    "label": "Kemiringan atap",
+    "input": true,
+    "value_or_formula": 30,
+    "unit": "°",
+    "computed": 30
+   },
+   {
+    "key": "OV",
+    "label": "Overstek",
+    "input": true,
+    "value_or_formula": 0.6,
+    "unit": "m",
+    "computed": 0.6
+   },
+   {
+    "key": "NK",
+    "label": "Jumlah kolom utama 20×20",
+    "input": true,
+    "value_or_formula": 12,
+    "unit": "buah",
+    "computed": 12
+   },
+   {
+    "key": "NF",
+    "label": "Jumlah footplat",
+    "input": true,
+    "value_or_formula": 12,
+    "unit": "buah",
+    "computed": 12
+   },
+   {
+    "key": "BLEN",
+    "label": "Panjang balok lantai 20×35",
+    "input": true,
+    "value_or_formula": 51,
+    "unit": "m'",
+    "computed": 51
+   },
+   {
+    "key": "VOID",
+    "label": "Lubang tangga",
+    "input": true,
+    "value_or_formula": 6,
+    "unit": "m²",
+    "computed": 6
+   },
+   {
+    "key": "NKP1",
+    "label": "Kolom praktis lantai 1",
+    "input": true,
+    "value_or_formula": 8,
+    "unit": "buah",
+    "computed": 8
+   },
+   {
+    "key": "NKP2",
+    "label": "Kolom praktis lantai 2",
+    "input": true,
+    "value_or_formula": 12,
+    "unit": "buah",
+    "computed": 12
+   },
+   {
+    "key": "TG",
+    "label": "Volume beton tangga",
+    "input": true,
+    "value_or_formula": 1.6,
+    "unit": "m³",
+    "computed": 1.6
+   },
+   {
+    "key": "TGF",
+    "label": "Granit anak tangga",
+    "input": true,
+    "value_or_formula": 10,
+    "unit": "m²",
+    "computed": 10
+   },
+   {
+    "key": "RLT",
+    "label": "Railing tangga",
+    "input": true,
+    "value_or_formula": 5,
+    "unit": "m'",
+    "computed": 5
+   },
+   {
+    "key": "TE",
+    "label": "Teras",
+    "input": true,
+    "value_or_formula": 4.5,
+    "unit": "m²",
+    "computed": 4.5
+   },
+   {
+    "key": "CP",
+    "label": "Carport",
+    "input": true,
+    "value_or_formula": 15,
+    "unit": "m²",
+    "computed": 15
+   },
+   {
+    "key": "PG",
+    "label": "Lebar depan kavling",
+    "input": true,
+    "value_or_formula": 6,
+    "unit": "m",
+    "computed": 6
+   },
+   {
+    "key": "GT",
+    "label": "Lebar pintu pagar",
+    "input": true,
+    "value_or_formula": 3,
+    "unit": "m",
+    "computed": 3
+   },
+   {
+    "key": "NKM",
+    "label": "Jumlah kamar mandi",
+    "input": true,
+    "value_or_formula": 2,
+    "unit": "buah",
+    "computed": 2
+   },
+   {
+    "key": "KM1",
+    "label": "Luas lantai per KM",
+    "input": true,
+    "value_or_formula": 3,
+    "unit": "m²",
+    "computed": 3
+   },
+   {
+    "key": "KMW1",
+    "label": "Keramik dinding per KM",
+    "input": true,
+    "value_or_formula": 15.4,
+    "unit": "m²",
+    "computed": 15.4
+   },
+   {
+    "key": "WPF",
+    "label": "Waterproofing lantai KM lantai 2",
+    "input": true,
+    "value_or_formula": 4.5,
+    "unit": "m²",
+    "computed": 4.5
+   },
+   {
+    "key": "A",
+    "label": "Luas bangunan total (2 lantai)",
+    "input": false,
+    "value_or_formula": "=2*Volume!$B$6*Volume!$B$7",
+    "unit": "m²",
+    "computed": 108
+   },
+   {
+    "key": "A1",
+    "label": "Luas tapak bangunan",
+    "input": false,
+    "value_or_formula": "=Volume!$B$6*Volume!$B$7",
+    "unit": "m²",
+    "computed": 54
+   },
+   {
+    "key": "LO",
+    "label": "Keliling dinding luar",
+    "input": false,
+    "value_or_formula": "=2*(Volume!$B$6+Volume!$B$7)",
+    "unit": "m",
+    "computed": 30
+   },
+   {
+    "key": "LT1",
+    "label": "Panjang dinding lantai 1",
+    "input": false,
+    "value_or_formula": "=Volume!$B$38+Volume!$B$10",
+    "unit": "m",
+    "computed": 46
+   },
+   {
+    "key": "LT2",
+    "label": "Panjang dinding lantai 2",
+    "input": false,
+    "value_or_formula": "=Volume!$B$38+Volume!$B$11",
+    "unit": "m",
+    "computed": 48
+   },
+   {
+    "key": "GA",
+    "label": "Luas ampig",
+    "input": false,
+    "value_or_formula": "=2*0.5*Volume!$B$6*(Volume!$B$6/2)*TAN(RADIANS(Volume!$B$16))",
+    "unit": "m²",
+    "computed": 10.3923048454133
+   },
+   {
+    "key": "DW",
+    "label": "Dinding bata ringan bersih",
+    "input": false,
+    "value_or_formula": "=Volume!$B$39*Volume!$B$8+Volume!$B$40*Volume!$B$9-Volume!$B$12-Volume!$B$13+Volume!$B$41",
+    "unit": "m²",
+    "computed": 288.862304845413
+   },
+   {
+    "key": "PL",
+    "label": "Plester + acian (dua sisi; ampig sisi luar)",
+    "input": false,
+    "value_or_formula": "=2*(Volume!$B$39*Volume!$B$8+Volume!$B$40*Volume!$B$9-Volume!$B$12-Volume!$B$13)+Volume!$B$41",
+    "unit": "m²",
+    "computed": 567.332304845413
+   },
+   {
+    "key": "EXT",
+    "label": "Cat eksterior",
+    "input": false,
+    "value_or_formula": "=Volume!$B$38*(Volume!$B$8+Volume!$B$9)-0.7*(Volume!$B$12+Volume!$B$13)+Volume!$B$41",
+    "unit": "m²",
+    "computed": 186.541304845413
+   },
+   {
+    "key": "INT",
+    "label": "Cat interior dinding",
+    "input": false,
+    "value_or_formula": "=Volume!$B$43-Volume!$B$44",
+    "unit": "m²",
+    "computed": 380.791
+   },
+   {
+    "key": "BK",
+    "label": "Pasangan batu kali di bawah dinding lt 1 (atas 0,3; bawah 0,6; tinggi 0,6)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$39*(0.3+0.6)/2*0.6",
+    "unit": "m³",
+    "computed": 12.42
+   },
+   {
+    "key": "GL",
+    "label": "Galian (batu kali 0,8×0,7 + footplat 1,2×1,2×1,2)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$39*0.8*0.7+Volume!$B$19*1.2*1.2*1.2",
+    "unit": "m³",
+    "computed": 46.496
+   },
+   {
+    "key": "PS",
+    "label": "Urugan pasir bawah pondasi 5 cm",
+    "input": false,
+    "value_or_formula": "=Volume!$B$39*0.8*0.05",
+    "unit": "m³",
+    "computed": 1.84
+   },
+   {
+    "key": "LKF",
+    "label": "Lantai kerja footplat 5 cm",
+    "input": false,
+    "value_or_formula": "=Volume!$B$19*1*1*0.05",
+    "unit": "m³",
+    "computed": 0.6
+   },
+   {
+    "key": "FP",
+    "label": "Footplat 80×80×25 + leher kolom",
+    "input": false,
+    "value_or_formula": "=Volume!$B$19*(0.8*0.8*0.25+0.2*0.2*0.8)",
+    "unit": "m³",
+    "computed": 2.304
+   },
+   {
+    "key": "UK",
+    "label": "Urugan tanah kembali",
+    "input": false,
+    "value_or_formula": "=Volume!$B$47-Volume!$B$48-Volume!$B$49-Volume!$B$46-Volume!$B$50",
+    "unit": "m³",
+    "computed": 29.332
+   },
+   {
+    "key": "UL",
+    "label": "Urugan pasir bawah lantai 10 cm",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$37+Volume!$B$27)*0.1",
+    "unit": "m³",
+    "computed": 5.85
+   },
+   {
+    "key": "RB",
+    "label": "Rabat beton lantai kerja 5 cm",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$37+Volume!$B$27)*0.05",
+    "unit": "m³",
+    "computed": 2.925
+   },
+   {
+    "key": "SL",
+    "label": "Sloof 20×30",
+    "input": false,
+    "value_or_formula": "=Volume!$B$39*0.2*0.3",
+    "unit": "m³",
+    "computed": 2.76
+   },
+   {
+    "key": "KU",
+    "label": "Kolom utama 20×20",
+    "input": false,
+    "value_or_formula": "=Volume!$B$18*(Volume!$B$8+Volume!$B$9)*0.2*0.2",
+    "unit": "m³",
+    "computed": 3.12
+   },
+   {
+    "key": "BL",
+    "label": "Balok lantai 20×35",
+    "input": false,
+    "value_or_formula": "=Volume!$B$20*0.2*0.35",
+    "unit": "m³",
+    "computed": 3.57
+   },
+   {
+    "key": "PLT",
+    "label": "Plat lantai 12 cm",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$37-Volume!$B$21)*0.12",
+    "unit": "m³",
+    "computed": 5.76
+   },
+   {
+    "key": "RG",
+    "label": "Ring balok lantai 2 15×20",
+    "input": false,
+    "value_or_formula": "=Volume!$B$40*0.15*0.2",
+    "unit": "m³",
+    "computed": 1.44
+   },
+   {
+    "key": "KP",
+    "label": "Kolom praktis 15×15",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$22*Volume!$B$8+Volume!$B$23*Volume!$B$9)*0.15*0.15",
+    "unit": "m³",
+    "computed": 1.458
+   },
+   {
+    "key": "LA",
+    "label": "Balok latei 12×12",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$14+0.2*Volume!$B$15)*0.12*0.12",
+    "unit": "m³",
+    "computed": 0.30096
+   },
+   {
+    "key": "AM",
+    "label": "Bingkai ampig 12×12",
+    "input": false,
+    "value_or_formula": "=2*2*(Volume!$B$6/2/COS(RADIANS(Volume!$B$16)))*0.12*0.12",
+    "unit": "m³",
+    "computed": 0.199532253031935
+   },
+   {
+    "key": "RF",
+    "label": "Luas atap miring",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$6+2*Volume!$B$17)*(Volume!$B$7+2*Volume!$B$17)/COS(RADIANS(Volume!$B$16))",
+    "unit": "m²",
+    "computed": 84.8012075385722
+   },
+   {
+    "key": "LS",
+    "label": "Lisplang",
+    "input": false,
+    "value_or_formula": "=2*(Volume!$B$7+2*Volume!$B$17)+4*((Volume!$B$6+2*Volume!$B$17)/2/COS(RADIANS(Volume!$B$16)))",
+    "unit": "m'",
+    "computed": 37.0276877526612
+   },
+   {
+    "key": "NOKL",
+    "label": "Panjang nok",
+    "input": false,
+    "value_or_formula": "=Volume!$B$7+2*Volume!$B$17",
+    "unit": "m'",
+    "computed": 10.2
+   },
+   {
+    "key": "KM",
+    "label": "Lantai KM total",
+    "input": false,
+    "value_or_formula": "=Volume!$B$31*Volume!$B$32",
+    "unit": "m²",
+    "computed": 6
+   },
+   {
+    "key": "KMW",
+    "label": "Keramik dinding KM total",
+    "input": false,
+    "value_or_formula": "=Volume!$B$31*Volume!$B$33",
+    "unit": "m²",
+    "computed": 30.8
+   },
+   {
+    "key": "GR",
+    "label": "Lantai granit",
+    "input": false,
+    "value_or_formula": "=2*Volume!$B$37-Volume!$B$21-Volume!$B$65-(Volume!$B$39+Volume!$B$40)*0.1",
+    "unit": "m²",
+    "computed": 86.6
+   },
+   {
+    "key": "PT",
+    "label": "Plint",
+    "input": false,
+    "value_or_formula": "=2*(Volume!$B$10+Volume!$B$11)+2*Volume!$B$38-0.8*Volume!$B$15",
+    "unit": "m'",
+    "computed": 113.6
+   },
+   {
+    "key": "PF",
+    "label": "Plafon (lt 1, lt 2, teras)",
+    "input": false,
+    "value_or_formula": "=2*Volume!$B$37-Volume!$B$21+Volume!$B$27",
+    "unit": "m²",
+    "computed": 106.5
+   },
+   {
+    "key": "INTP",
+    "label": "Cat interior (dinding + plafon)",
+    "input": false,
+    "value_or_formula": "=Volume!$B$45+Volume!$B$69",
+    "unit": "m²",
+    "computed": 487.291
+   },
+   {
+    "key": "PGW",
+    "label": "Pagar hollow",
+    "input": false,
+    "value_or_formula": "=(Volume!$B$29-Volume!$B$30)*1.2",
+    "unit": "m²",
+    "computed": 3.6
+   },
+   {
+    "key": "PGB",
+    "label": "Tembok pagar bawah",
+    "input": false,
+    "value_or_formula": "=Volume!$B$29*0.6",
+    "unit": "m²",
+    "computed": 3.6
+   },
+   {
+    "key": "GTA",
+    "label": "Pintu pagar geser",
+    "input": false,
+    "value_or_formula": "=Volume!$B$30*1.8",
+    "unit": "m²",
+    "computed": 5.4
+   }
+  ],
+  "items": [
+   {
+    "group": "I",
+    "name": "Bouwplank & pengukuran",
+    "volume": "A1",
+    "unit": "m²",
+    "materials": {
+     "KYB": 1
+    },
+    "labor_OH": {
+     "TKY": 0.05,
+     "PKJ": 0.05
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "I",
+    "name": "Pembersihan lahan",
+    "volume": "1",
+    "unit": "ls",
+    "materials": {},
+    "labor_OH": {
+     "PKJ": 20
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "I",
+    "name": "Air & listrik kerja",
+    "volume": "1.5",
+    "unit": "ls",
+    "materials": {
+     "AIR": 1
+    },
+    "labor_OH": {},
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Galian tanah pondasi",
+    "volume": "GL",
+    "unit": "m³",
+    "materials": {},
+    "labor_OH": {
+     "PKJ": 0.6375,
+     "MDR": 0.02125
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Urugan pasir bawah pondasi",
+    "volume": "PS",
+    "unit": "m³",
+    "materials": {
+     "PSU": 1.2
+    },
+    "labor_OH": {
+     "PKJ": 0.255,
+     "MDR": 0.0085
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Lantai kerja footplat K-175",
+    "volume": "LKF",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764
+    },
+    "labor_OH": {
+     "PKJ": 0.7424999999999999,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.0126,
+     "MDR": 0.03735
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Footplat 80×80×25 + leher (D12-150, K-250)",
+    "volume": "FP",
+    "unit": "m³",
+    "materials": {
+     "SMN": 384,
+     "PSB": 0.494,
+     "SPL": 0.721,
+     "D12": 94,
+     "D8": 6,
+     "KWT": 1.5,
+     "MPX": 0.65625,
+     "KSO": 7.366071428571428,
+     "PKU": 0.75,
+     "MYK": 0.375
+    },
+    "labor_OH": {
+     "PKJ": 3.6700000000000004,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.193975,
+     "MDR": 0.188725,
+     "TBS": 0.7000000000000001,
+     "TKY": 1.1137500000000002
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Pasangan batu kali 1:4",
+    "volume": "BK",
+    "unit": "m³",
+    "materials": {
+     "BTK": 1.2,
+     "SMN": 163,
+     "PSP": 0.52
+    },
+    "labor_OH": {
+     "PKJ": 0.8999999999999999,
+     "TKG": 0.44999999999999996,
+     "KTK": 0.045,
+     "MDR": 0.045
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Urugan tanah kembali",
+    "volume": "UK",
+    "unit": "m³",
+    "materials": {},
+    "labor_OH": {
+     "PKJ": 0.3875,
+     "MDR": 0.012400000000000001
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Urugan pasir bawah lantai",
+    "volume": "UL",
+    "unit": "m³",
+    "materials": {
+     "PSU": 1.2
+    },
+    "labor_OH": {
+     "PKJ": 0.255,
+     "MDR": 0.0085
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "II",
+    "name": "Rabat beton lantai kerja K-175",
+    "volume": "RB",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764
+    },
+    "labor_OH": {
+     "PKJ": 0.7424999999999999,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.0126,
+     "MDR": 0.03735
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Sloof 20×30 (4D13, Ø8-15, K-250)",
+    "volume": "SL",
+    "unit": "m³",
+    "materials": {
+     "SMN": 384,
+     "PSB": 0.494,
+     "SPL": 0.721,
+     "D13": 69,
+     "D8": 40,
+     "KWT": 1.635,
+     "MPX": 0.875,
+     "KSO": 9.821428571428571,
+     "PKU": 1.0,
+     "MYK": 0.5
+    },
+    "labor_OH": {
+     "PKJ": 4.4755,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.2374,
+     "MDR": 0.22945,
+     "TBS": 0.763,
+     "TKY": 1.4850000000000003
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Kolom utama 20×20 (8D12, Ø8-15, K-250)",
+    "volume": "KU",
+    "unit": "m³",
+    "materials": {
+     "SMN": 384,
+     "PSB": 0.494,
+     "SPL": 0.721,
+     "D12": 178,
+     "D8": 46,
+     "KWT": 3.36,
+     "MPX": 1.75,
+     "KSO": 19.642857142857142,
+     "PKU": 2.0,
+     "MYK": 1.0
+    },
+    "labor_OH": {
+     "PKJ": 8.250500000000002,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.4664,
+     "MDR": 0.42395,
+     "TBS": 1.568,
+     "TKY": 2.9700000000000006
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Balok lantai 20×35 (6D13, Ø8-15, K-250)",
+    "volume": "BL",
+    "unit": "m³",
+    "materials": {
+     "SMN": 384,
+     "PSB": 0.494,
+     "SPL": 0.721,
+     "D13": 89,
+     "D8": 38,
+     "KWT": 1.905,
+     "MPX": 0.8225,
+     "KSO": 9.232142857142858,
+     "PKU": 0.9400000000000001,
+     "MYK": 0.47000000000000003,
+     "DLK": 4.7
+    },
+    "labor_OH": {
+     "PKJ": 4.4233,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.24109000000000003,
+     "MDR": 0.22774000000000003,
+     "TBS": 0.889,
+     "TKY": 1.3959000000000001
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Plat lantai 12 cm (D10-150 dua lapis, K-250)",
+    "volume": "PLT",
+    "unit": "m³",
+    "materials": {
+     "SMN": 384,
+     "PSB": 0.494,
+     "SPL": 0.721,
+     "D10": 137,
+     "KWT": 2.0549999999999997,
+     "MPX": 0.7288749999999999,
+     "KSO": 8.18125,
+     "PKU": 0.8330000000000001,
+     "MYK": 0.41650000000000004,
+     "DLK": 4.165
+    },
+    "labor_OH": {
+     "PKJ": 4.17551,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.2322005,
+     "MDR": 0.2158505,
+     "TBS": 0.9590000000000001,
+     "TKY": 1.2370050000000001
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Tangga beton (D10-150, K-250)",
+    "volume": "TG",
+    "unit": "m³",
+    "materials": {
+     "SMN": 384,
+     "PSB": 0.494,
+     "SPL": 0.721,
+     "D10": 110,
+     "KWT": 1.65,
+     "MPX": 0.7,
+     "KSO": 7.857142857142857,
+     "PKU": 0.8,
+     "MYK": 0.4,
+     "DLK": 4.0
+    },
+    "labor_OH": {
+     "PKJ": 3.8885000000000005,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.2084,
+     "MDR": 0.20015,
+     "TBS": 0.77,
+     "TKY": 1.1880000000000002
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Ring balok lt 2 15×20 (4D10, Ø8-15)",
+    "volume": "RG",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D10": 82,
+     "D8": 53,
+     "KWT": 2.025,
+     "MPX": 1.16375,
+     "KSO": 13.0625,
+     "PKU": 1.33,
+     "MYK": 0.665
+    },
+    "labor_OH": {
+     "PKJ": 5.637600000000001,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.304605,
+     "MDR": 0.28885500000000003,
+     "TBS": 0.9450000000000001,
+     "TKY": 1.9750500000000004
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Kolom praktis 15×15 (4D10, Ø6-15)",
+    "volume": "KP",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D10": 110,
+     "D6": 34,
+     "KWT": 2.16,
+     "MPX": 1.16375,
+     "KSO": 13.0625,
+     "PKU": 1.33,
+     "MYK": 0.665
+    },
+    "labor_OH": {
+     "PKJ": 5.7006000000000006,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.310905,
+     "MDR": 0.292455,
+     "TBS": 1.008,
+     "TKY": 1.9750500000000004
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Balok latei 12×12 (4D8, Ø6-15)",
+    "volume": "LA",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D8": 110,
+     "D6": 41,
+     "KWT": 2.265,
+     "MPX": 2.1875,
+     "KSO": 24.553571428571427,
+     "PKU": 2.5,
+     "MYK": 1.25
+    },
+    "labor_OH": {
+     "PKJ": 9.2245,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.48955000000000004,
+     "MDR": 0.46900000000000003,
+     "TBS": 1.057,
+     "TKY": 3.7125000000000004
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Bingkai ampig 12×12 (4D8, Ø6-15)",
+    "volume": "AM",
+    "unit": "m³",
+    "materials": {
+     "SMN": 326,
+     "PSB": 0.543,
+     "SPL": 0.764,
+     "D8": 110,
+     "D6": 41,
+     "KWT": 2.265,
+     "MPX": 1.46125,
+     "KSO": 16.40178571428571,
+     "PKU": 1.67,
+     "MYK": 0.835
+    },
+    "labor_OH": {
+     "PKJ": 6.7594,
+     "TKG": 0.12375000000000001,
+     "KTK": 0.366295,
+     "MDR": 0.34574499999999997,
+     "TBS": 1.057,
+     "TKY": 2.47995
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "III",
+    "name": "Railing tangga besi hollow",
+    "volume": "RLT",
+    "unit": "m'",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 1087100,
+    "package_source": "TNG-01 — harga terpasang bengkel las",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IV",
+    "name": "Pasangan bata ringan 10 cm",
+    "volume": "DW",
+    "unit": "m²",
+    "materials": {
+     "BRG": 8.715,
+     "MRT": 7.5
+    },
+    "labor_OH": {
+     "PKJ": 0.18,
+     "TKG": 0.06,
+     "KTK": 0.006,
+     "MDR": 0.009
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IV",
+    "name": "Plesteran + acian",
+    "volume": "PL",
+    "unit": "m²",
+    "materials": {
+     "SMN": 9.49,
+     "PSP": 0.024
+    },
+    "labor_OH": {
+     "PKJ": 0.3,
+     "TKG": 0.15,
+     "KTK": 0.015,
+     "MDR": 0.015
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Rangka atap baja ringan",
+    "volume": "RF",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 201600,
+    "package_source": "ATP-RNG-01 — harga terpasang aplikator",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Genteng beton",
+    "volume": "RF",
+    "unit": "m²",
+    "materials": {
+     "GNT": 10
+    },
+    "labor_OH": {
+     "TKG": 0.35,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Nok / bubungan",
+    "volume": "NOKL",
+    "unit": "m'",
+    "materials": {
+     "NOK": 3,
+     "SMN": 3,
+     "PSP": 0.01
+    },
+    "labor_OH": {
+     "TKG": 0.15,
+     "PKJ": 0.1
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "V",
+    "name": "Lisplang GRC 20 cm",
+    "volume": "LS",
+    "unit": "m'",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 90000,
+    "package_source": "ATP-LSP-01 — dipasang aplikator atap",
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VI",
+    "name": "Plafon gypsum 9 mm + rangka hollow",
+    "volume": "PF",
+    "unit": "m²",
+    "materials": {
+     "GYP": 0.3472222222222222,
+     "HLW": 0.75,
+     "CMP": 0.35
+    },
+    "labor_OH": {
+     "TKY": 0.2,
+     "PKJ": 0.1
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Granit HT 60×60",
+    "volume": "GR",
+    "unit": "m²",
+    "materials": {
+     "GRN": 1,
+     "SMN": 10,
+     "PSP": 0.045,
+     "NAT": 0.3
+    },
+    "labor_OH": {
+     "TKG": 0.3,
+     "PKJ": 0.17
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Granit anak tangga + nosing",
+    "volume": "TGF",
+    "unit": "m²",
+    "materials": {
+     "GRN": 1.1,
+     "SMN": 10,
+     "PSP": 0.045,
+     "NAT": 0.3
+    },
+    "labor_OH": {
+     "TKG": 0.6,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Plint granit (potongan 10 cm)",
+    "volume": "PT",
+    "unit": "m'",
+    "materials": {
+     "GRN": 0.1,
+     "SMN": 1,
+     "NAT": 0.05
+    },
+    "labor_OH": {
+     "TKG": 0.08,
+     "PKJ": 0.045
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Keramik lantai KM anti-slip",
+    "volume": "KM",
+    "unit": "m²",
+    "materials": {
+     "KKM": 1,
+     "SMN": 10,
+     "PSP": 0.045,
+     "NAT": 1.0
+    },
+    "labor_OH": {
+     "TKG": 0.26,
+     "PKJ": 0.15
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Keramik dinding KM",
+    "volume": "KMW",
+    "unit": "m²",
+    "materials": {
+     "KDW": 1,
+     "SMN": 9.3,
+     "PSP": 0.018,
+     "NAT": 0.5
+    },
+    "labor_OH": {
+     "TKG": 0.26,
+     "PKJ": 0.15
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Keramik teras 40×40",
+    "volume": "TE",
+    "unit": "m²",
+    "materials": {
+     "KTR": 1,
+     "SMN": 10,
+     "PSP": 0.045,
+     "NAT": 0.5
+    },
+    "labor_OH": {
+     "TKG": 0.26,
+     "PKJ": 0.15
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VII",
+    "name": "Waterproofing lantai KM lantai 2",
+    "volume": "WPF",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 69500,
+    "package_source": "WPF-PKT-01 — aplikator waterproofing",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Pintu utama aluminium + kusen + kunci",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 2796200,
+    "package_source": "PNT-UT-04 + KNC-01 — dipasang toko aluminium",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Pintu kamar HPL + kusen aluminium (4 kamar + belakang)",
+    "volume": "5",
+    "unit": "unit",
+    "materials": {
+     "PKT": 1,
+     "KSN": 1,
+     "KNC": 1
+    },
+    "labor_OH": {
+     "TKY": 1,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Pintu KM PVC",
+    "volume": "2",
+    "unit": "unit",
+    "materials": {
+     "PKM": 1
+    },
+    "labor_OH": {
+     "TKY": 1,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Jendela aluminium + kaca (7 × 120×120)",
+    "volume": "10.08",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 1547000,
+    "package_source": "JND-01 — dipasang toko aluminium",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Pintu sliding balkon aluminium + kaca",
+    "volume": "2",
+    "unit": "set",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 2050000,
+    "package_source": "PKC-01 — dipasang toko aluminium",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "VIII",
+    "name": "Bovenlight KM kaca mati",
+    "volume": "0.4",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 950000,
+    "package_source": "JND-05 — dipasang toko aluminium",
+    "reference": "Estimasi",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IX",
+    "name": "Cat interior Catylac (dinding + plafon)",
+    "volume": "INTP",
+    "unit": "m²",
+    "materials": {
+     "PLM": 0.1,
+     "CDI": 0.1,
+     "CTL": 0.26
+    },
+    "labor_OH": {
+     "PKJ": 0.02,
+     "TCT": 0.063,
+     "KTK": 0.0063,
+     "MDR": 0.0025
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "IX",
+    "name": "Cat eksterior Weathershield",
+    "volume": "EXT",
+    "unit": "m²",
+    "materials": {
+     "CDE": 0.1,
+     "WSH": 0.1925925925925926
+    },
+    "labor_OH": {
+     "PKJ": 0.02,
+     "TCT": 0.063,
+     "KTK": 0.0063,
+     "MDR": 0.0025
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Kloset duduk + jet shower",
+    "volume": "2",
+    "unit": "unit",
+    "materials": {
+     "KLS": 1,
+     "JTS": 1
+    },
+    "labor_OH": {
+     "TPP": 1,
+     "PKJ": 0.5
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Shower set",
+    "volume": "2",
+    "unit": "set",
+    "materials": {
+     "SHW": 1
+    },
+    "labor_OH": {
+     "TPP": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "X",
+    "name": "Wastafel + kran",
+    "volume": "2",
+    "unit": "unit",
+    "materials": {
+     "WST": 1
+    },
+    "labor_OH": {
+     "TPP": 0.5
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Floor drain",
+    "volume": "3",
+    "unit": "buah",
+    "materials": {
+     "FDR": 1
+    },
+    "labor_OH": {
+     "TPP": 0.2
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Kran air",
+    "volume": "6",
+    "unit": "buah",
+    "materials": {
+     "KRN": 1
+    },
+    "labor_OH": {
+     "TPP": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Pipa PVC AW ½\" air bersih",
+    "volume": "45",
+    "unit": "m'",
+    "materials": {
+     "PAW": 1,
+     "FTP": 1
+    },
+    "labor_OH": {
+     "PKJ": 0.036,
+     "TPP": 0.06,
+     "KTK": 0.006,
+     "MDR": 0.0018
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Pipa PVC D 3\" air bekas",
+    "volume": "18",
+    "unit": "m'",
+    "materials": {
+     "PD3": 1,
+     "FTP": 1
+    },
+    "labor_OH": {
+     "PKJ": 0.05399999999999999,
+     "TPP": 0.09,
+     "KTK": 0.009000000000000001,
+     "MDR": 0.0027
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Pipa PVC D 4\" air kotor",
+    "volume": "14",
+    "unit": "m'",
+    "materials": {
+     "PD4": 1,
+     "FTP": 1
+    },
+    "labor_OH": {
+     "PKJ": 0.05399999999999999,
+     "TPP": 0.09,
+     "KTK": 0.009000000000000001,
+     "MDR": 0.0027
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "X",
+    "name": "Toren 1.000 L",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {
+     "TRN": 1
+    },
+    "labor_OH": {
+     "TPP": 2,
+     "PKJ": 1.5
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "X",
+    "name": "Pompa air 125 W",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {
+     "PMP": 1
+    },
+    "labor_OH": {
+     "TPP": 0.5,
+     "PKJ": 0.3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "X",
+    "name": "Septictank biofil 1.000 L",
+    "volume": "1",
+    "unit": "unit",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 3762900,
+    "package_source": "AIR-SPT-PKT — dipasang penjual",
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XI",
+    "name": "Titik lampu + downlight",
+    "volume": "22",
+    "unit": "titik",
+    "materials": {
+     "K15": 8,
+     "CDT": 8,
+     "DLT": 1
+    },
+    "labor_OH": {
+     "TLS": 0.35,
+     "PKJ": 0.25
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XI",
+    "name": "Titik saklar / stop kontak",
+    "volume": "26",
+    "unit": "titik",
+    "materials": {
+     "K25": 5,
+     "K15": 2.5,
+     "CDT": 7.5,
+     "SKL": 1
+    },
+    "labor_OH": {
+     "TLS": 0.35,
+     "PKJ": 0.25
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XI",
+    "name": "Box MCB 12 grup + MCB (3.500 VA)",
+    "volume": "1",
+    "unit": "set",
+    "materials": {
+     "MC2": 1
+    },
+    "labor_OH": {
+     "TLS": 0.8
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Standar"
+   },
+   {
+    "group": "XII",
+    "name": "Meja dapur beton + sink + kran",
+    "volume": "1",
+    "unit": "ls",
+    "materials": {
+     "MDP": 1,
+     "SNK": 1
+    },
+    "labor_OH": {
+     "TKG": 4,
+     "PKJ": 3
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Estimasi",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Carport beton bertulang 12 cm (D8-200)",
+    "volume": "CP",
+    "unit": "m²",
+    "materials": {
+     "SMN": 39.12,
+     "PSB": 0.06516,
+     "SPL": 0.09168,
+     "D8": 3.95,
+     "KWT": 0.06,
+     "PSU": 0.05
+    },
+    "labor_OH": {
+     "PKJ": 0.11674999999999999,
+     "TKG": 0.01485,
+     "KTK": 0.0042769999999999996,
+     "MDR": 0.006062,
+     "TBS": 0.02765
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Kanopi baja ringan + Alderon",
+    "volume": "CP",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 600000,
+    "package_source": "KNP-01 — harga terpasang",
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Tembok pagar bawah (bata ringan, plester 2 sisi, cat)",
+    "volume": "PGB",
+    "unit": "m²",
+    "materials": {
+     "BRG": 8.715,
+     "MRT": 7.5,
+     "SMN": 18.98,
+     "PSP": 0.048,
+     "CDE": 0.2,
+     "WSH": 0.3851851851851852
+    },
+    "labor_OH": {
+     "PKJ": 0.8200000000000001,
+     "TKG": 0.36,
+     "KTK": 0.0486,
+     "MDR": 0.044,
+     "TCT": 0.126
+    },
+    "installed_package_price": null,
+    "package_source": null,
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Pagar besi hollow",
+    "volume": "PGW",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 895900,
+    "package_source": "PGR-01 — harga terpasang bengkel las",
+    "reference": "Harga acuan",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Pintu pagar geser",
+    "volume": "GTA",
+    "unit": "m²",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 1650000,
+    "package_source": "PPG-02 — harga terpasang bengkel las",
+    "reference": "Estimasi",
+    "item_type": "Tambahan"
+   },
+   {
+    "group": "XIII",
+    "name": "Rel + roda pintu pagar",
+    "volume": "1",
+    "unit": "set",
+    "materials": {},
+    "labor_OH": {},
+    "installed_package_price": 650000,
+    "package_source": "PPG-05 — harga terpasang",
+    "reference": "Estimasi",
+    "item_type": "Tambahan"
+   }
+  ],
+  "golden": {
+   "total_swakelola": 516601137,
+   "total_borongan": 559217347,
+   "per_m2_standard_swakelola": 3955296,
+   "per_m2_standard_borongan": 4548590,
+   "upah_total": 141133453,
+   "duration_weeks": 24,
+   "price_check_status": "Di bawah rentang (-9%) — periksa apakah ada pekerjaan/spesifikasi yang terlewat"
+  }
+ },
+ "parameters": {
+  "margin": 0.15,
+  "contingency_swakelola": 0.1,
+  "contingency_borongan": 0.05,
+  "delivery_non_bulk": 0.03,
+  "contractor_pkp": 0,
+  "ppn_effective": 0.11,
+  "ppn_kms": 0.022,
+  "ppn_kms_min_area_m2": 200,
+  "crew_size": {
+   "1_lantai": 5,
+   "2_lantai": 8
+  },
+  "workdays_per_week": 6
+ },
+ "price_ranges_per_m2_borongan": {
+  "Sederhana": [
+   3500000,
+   5000000
+  ],
+  "Menengah": [
+   5000000,
+   7000000
+  ],
+  "Mewah": [
+   7000000,
+   10000000
+  ],
+  "borongan_jasa": [
+   1000000,
+   1800000
+  ]
+ },
+ "labor_calibration_factors_applied_in_coefficients": {
+  "Tanah": 0.85,
+  "Pasangan & plesteran": 0.6,
+  "Beton (cor & bekisting)": 0.45,
+  "Pembesian": 1.0,
+  "Cat": 1.0,
+  "Urugan kembali": 1.55,
+  "bekisting_reuse": 4
+ }
+}

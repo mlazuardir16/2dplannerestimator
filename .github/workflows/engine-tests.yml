@@ -1,0 +1,24 @@
+name: Engine golden tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  engine-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The engine is stdlib-only; pytest.ini requires pytest-xdist.
+      - run: pip install "pytest>=8" "pytest-xdist>=3.6"
+
+      - run: python -m pytest tests/test_engine.py -v
