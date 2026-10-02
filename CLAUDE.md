@@ -11,7 +11,4 @@
   ```
 
   The work isn't done until every test passes. Never loosen the ±Rp1 tolerance or edit the golden numbers to make a test pass. If a change would move a golden value, raise it first.
-- Workbook rules the spec doesn't mention yet, which the golden values depend on:
-  - Labour OH is rounded to 4 decimals. Material coefficient × (1 + waste) is rounded to 5 decimals.
-  - Stage XII starts the week after XI ends, even if IX is still running.
-  - Packs are `ceil(qty / pack_size − 0.0001)`.
+- The workbook rules the golden values depend on are written into spec §3 (v1.1): rounded effective coefficients, XII starting right after XI, and the pack tolerance. If a workbook behaviour turns out to be missing from the spec, add it there, not here.
