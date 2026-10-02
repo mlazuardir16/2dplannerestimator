@@ -46,6 +46,7 @@ def _round_half_away(x: float) -> int:
 
 @dataclass
 class Line:
+    code: str  # "II.3"
     group: str
     name: str
     unit: str
@@ -211,7 +212,7 @@ def calculate(project: Project) -> Result:
         u_u = upah_unit(item, project.labor_rates)
         m_u = (b_u + u_u) * margin
         lines.append(Line(
-            group=item["group"], name=item["name"], unit=item["unit"],
+            code=item["code"], group=item["group"], name=item["name"], unit=item["unit"],
             item_type=item["item_type"], reference=item["reference"],
             volume=vol, bahan_unit=b_u, upah_unit=u_u, margin_unit=m_u,
             bahan=vol * b_u, upah=vol * u_u, margin=vol * m_u,

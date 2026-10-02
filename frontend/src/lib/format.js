@@ -1,4 +1,5 @@
 export function formatMoney(value, currency = "USD") {
+  if (currency === "IDR") return formatRupiah(value);
   const v = Number.isFinite(value) ? value : 0;
   try {
     return new Intl.NumberFormat("en-US", {
@@ -30,4 +31,20 @@ export function fmtDate(iso) {
   } catch (e) {
     return "—";
   }
+}
+
+// Indonesian formatting for the Buildora RAB screens: "Rp 244.786.045".
+export function formatRupiah(value) {
+  const v = Number.isFinite(value) ? value : 0;
+  return "Rp " + Math.round(v).toLocaleString("id-ID");
+}
+
+export function fmtId(value, digits = 2) {
+  const v = Number.isFinite(value) ? value : 0;
+  return v.toLocaleString("id-ID", { minimumFractionDigits: 0, maximumFractionDigits: digits });
+}
+
+export function fmtPct(fraction, digits = 1) {
+  const v = Number.isFinite(fraction) ? fraction : 0;
+  return (v * 100).toLocaleString("id-ID", { maximumFractionDigits: digits }) + "%";
 }

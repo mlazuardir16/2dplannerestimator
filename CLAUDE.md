@@ -1,5 +1,13 @@
 # CLAUDE.md
 
+## How estimating works
+
+- The drawing (2D planner) feeds the Buildora RAB engine.
+  - `frontend/src/lib/rabInputs.js` turns the drawing into a request for the matching template: 1 floor uses `tipe36_1lantai`, 2 floors use `2lantai_lb108`, and other floor counts aren't supported.
+  - Each value comes from one of three sources, in this order: a manual edit, then the drawing (`denah`), then the template default. Edits are saved on the project as `project.rab`.
+- The backend `backend/rab/` exposes `GET /api/rab/templates` and `POST /api/rab/calculate`. These are pure calculations with no database access.
+- The RAB screens (`frontend/src/components/rab/`) are in Indonesian. The planner UI stays in English.
+
 ## RAB engine (`backend/engine/`)
 
 - The rules come from `docs/engine/`: `BUILDORA_ENGINE_SPEC.md`, `buildora_engine_seed.json` and the two reference workbooks (`Buildora_RAB_Tipe36.xlsx`, `Buildora_RAB_2Lantai_LB108.xlsx`). If the spec text and the workbooks disagree, the workbooks win, because the golden values come from them.

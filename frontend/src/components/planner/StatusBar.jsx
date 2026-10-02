@@ -1,7 +1,7 @@
 import { useProjectStore } from "@/store/useProjectStore";
 import { ZoomIn, ZoomOut, Maximize, Grid3x3, Magnet } from "lucide-react";
 
-export default function StatusBar({ estimate }) {
+export default function StatusBar() {
   const view = useProjectStore((s) => s.view);
   const setView = useProjectStore((s) => s.setView);
   const grid = useProjectStore((s) => s.grid);
